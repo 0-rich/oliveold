@@ -1,3 +1,19 @@
 spring:
   application:
     name: oliveold
+# DB
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${mysql.url}
+    usernmae: ${mysql.username}
+    password: ${mysql.password}
+#JPA
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
