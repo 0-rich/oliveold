@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  font-family: "NotoSansCJKkr";
+  font-weight: bolder;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.container_logo {
+  display: flex;
+  align-items: center;
+  font-size: 2.5vh;
+}
+
+.logo {
+  height: 4vh;
+  padding: 6px;
+  margin-left: 6px;
+}
+
+.header span {
+  margin-left: 13px;
+  margin: auto;
+}
+
+.container_flaticon {
+  display: flex;
+  margin-left: auto;
+  margin-right: 9px;
+  gap: 15px;
+}
+
+.flaticon {
+  height: 30px;
+  margin: 3px;
+}

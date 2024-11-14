@@ -1,0 +1,16 @@
+.topnav {
+  display: flex;
+  align-items: center;
+  font-family: "NotoSansCJKkr";
+  height: 4.5vh;
+  width: 100%;
+  gap: 25px;
+  padding-left: 13px;
+  margin: 5px 0;
+}
+
+.nav_span {
+  font-size: 1.8vh;
+  font-weight: bold;
+  align-items: center;
+}

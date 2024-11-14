@@ -1,0 +1,360 @@
+.main {
+  height: 100%;
+}
+.body {
+  width: 100%;
+}
+
+/* 메인 광고 화면 */
+.main_img {
+  width: 100%;
+}
+/* 아이콘 list */
+.container_imgs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 96%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-left: 2%;
+}
+.container_imgs::-webkit-scrollbar {
+  display: none;
+}
+.container_img {
+  height: 10vh;
+  flex-shrink: 0;
+}
+
+.contents_header {
+  margin-top: 4%;
+  font-size: 2.1vh;
+  font-weight: bold;
+  text-align: left;
+  margin-left: 3%;
+}
+/* xxx님을 위한 인기상품 */
+.container_recommend {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 96%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-left: 2%;
+  margin-bottom: 7%;
+}
+.container_recommend::-webkit-scrollbar {
+  display: none;
+}
+.recommend {
+  width: 38%;
+}
+.recommend_img {
+  height: 21vh;
+  margin: 0;
+}
+.recommend p {
+  text-align: left;
+  margin: 1% 0 1% 2%;
+}
+.recommend_name {
+  text-align: left;
+  white-space: normal;
+}
+.recommend_discount_before {
+  color: #d3d3d3;
+  text-decoration: line-through;
+}
+.recommend_discount_rate {
+  color: red;
+  font-size: larger;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.recommend_discount_price {
+  font-size: larger;
+  font-weight: 600;
+}
+.recommend_div {
+  display: flex;
+  margin: 10px 0 0 2%;
+}
+.recommend_div1 {
+  padding: 2px;
+  background-color: #f34336;
+  border-radius: 5px;
+  color: white;
+  font-size: small;
+  margin-right: 5%;
+}
+.recommend_div2 {
+  padding: 2px;
+  background-color: #e2e2e2;
+  border-radius: 5px;
+  color: #d1317c;
+  font-size: small;
+  margin-right: 5%;
+}
+.recommend_div3 {
+  padding: 2px;
+  background-color: #e2e2e2;
+  border-radius: 5px;
+  color: rgb(80, 80, 80);
+  font-size: small;
+  margin-right: 5%;
+}
+.recommend_flaticon {
+  display: flex;
+  text-align: left;
+  margin: 6% 0 0 2%;
+  gap: 15%;
+}
+.flaticon {
+  height: 2vh;
+  filter: invert(1) brightness(0.83);
+}
+/* 카테고리 랭킹 */
+.category_header {
+  display: flex;
+  width: 96%;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-left: 3%;
+  gap: 10px;
+}
+.category_header::-webkit-scrollbar {
+  display: none;
+}
+.category_name {
+  display: flex;
+  height: 4.2vh;
+  padding: 0 16px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  white-space: nowrap;
+}
+.selected {
+  background-color: black;
+  color: white;
+}
+.unselected {
+  background-color: white;
+  color: gray;
+  border: solid 1px gray;
+}
+.container_category {
+  margin: 2% 0 0 2%;
+}
+.category {
+  padding: 1px;
+  display: flex;
+}
+.category_img {
+  height: 15vh;
+  margin: 2%;
+}
+.category_contents {
+  display: flex;
+}
+.category_textbox {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.category_text {
+  text-align: left;
+  white-space: normal;
+  margin: 0;
+}
+.category_price {
+  text-align: left;
+}
+.category_discount_rate {
+  color: red;
+  font-size: larger;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.category_discount_price {
+  font-size: larger;
+  font-weight: 600;
+}
+.category_discount_before {
+  color: #d3d3d3;
+  text-decoration: line-through;
+}
+.category_div {
+  display: flex;
+}
+.category_div1 {
+  padding: 2px;
+  background-color: #f34336;
+  border-radius: 5px;
+  color: white;
+  font-size: small;
+  margin-right: 5%;
+}
+.category_div2 {
+  padding: 2px;
+  background-color: #e2e2e2;
+  border-radius: 5px;
+  color: #d1317c;
+  font-size: small;
+  margin-right: 5%;
+}
+.category_div3 {
+  padding: 2px;
+  background-color: #e2e2e2;
+  border-radius: 5px;
+  color: rgb(80, 80, 80);
+  font-size: small;
+  margin-right: 5%;
+}
+.category_flaticonbox {
+  margin: auto 3%;
+}
+.category_flaticonbox .flaticon {
+  margin: 50% 0;
+}
+.category_page {
+  display: flex;
+  color: gray;
+  font-size: 1.8vh;
+  font-weight: 600;
+  text-align: center;
+  justify-content: center;
+  margin: 3% 0 7% 0;
+}
+.category_prevpage {
+  margin-right: 10%;
+  height: 2vh;
+  margin-top: auto;
+}
+.category_nextpage {
+  margin-left: 10%;
+  height: 2vh;
+  margin-top: auto;
+}
+.category_selectedpage {
+  color: black;
+}
+/* 관심있을 만한 세일 상품 */
+.container_sale {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(38%, 1fr));
+  gap: 20px 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 96%;
+  margin-left: 2%;
+  margin-bottom: 7%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.container_sale::-webkit-scrollbar {
+  display: none;
+}
+.sale {
+  width: 100%;
+}
+.sale_img {
+  height: 21vh;
+  margin: 0;
+}
+.sale p {
+  text-align: left;
+  margin: 1% 0 1% 2%;
+}
+.sale_name {
+  text-align: left;
+  white-space: normal;
+}
+.sale_discount_before {
+  color: #d3d3d3;
+  text-decoration: line-through;
+}
+.sale_discount_rate {
+  color: red;
+  font-size: larger;
+  font-weight: 600;
+  margin-right: 3%;
+}
+.sale_discount_price {
+  font-size: larger;
+  font-weight: 600;
+}
+.sale_div {
+  display: flex;
+  margin: 10px 0 0 2%;
+}
+.sale_div1 {
+  padding: 2px;
+  background-color: #f34336;
+  border-radius: 5px;
+  color: white;
+  font-size: small;
+  margin-right: 5%;
+}
+.sale_div2 {
+  padding: 2px;
+  background-color: #e2e2e2;
+  border-radius: 5px;
+  color: #d1317c;
+  font-size: small;
+  margin-right: 5%;
+}
+.sale_div3 {
+  padding: 2px;
+  background-color: #e2e2e2;
+  border-radius: 5px;
+  color: rgb(80, 80, 80);
+  font-size: small;
+  margin-right: 5%;
+}
+/* 올리브영 매거진 */
+.container_magazine {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(38%, 1fr));
+  gap: 20px 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 96%;
+  margin-left: 2%;
+  margin-bottom: 7%;
+}
+.magazine {
+  width: 50%;
+}
+.magazine_img {
+  height: 35vh;
+  margin-bottom: 3%;
+}
+.magazine p {
+  text-align: left;
+  margin: 0 0 0 2%;
+  font-weight: bolder;
+  font-family: "NotoSansCJKkr";
+  font-size: large;
+  letter-spacing: -1px;
+}
+.magazine_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5.5vh;
+  width: 40%;
+  border: solid 1px gray;
+  border-radius: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flaticon2 {
+  margin-left: 1%;
+  height: 2vh;
+}
