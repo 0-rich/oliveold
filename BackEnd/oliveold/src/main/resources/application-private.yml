@@ -1,4 +1,4 @@
 mysql:
-  url: localhost:3306/oliveold
-  usernmae: youngrich
-  password: 3y}COG1McyK&6A=pN3ofFBhEUViJo1
+  url: jdbc:mysql://localhost:3306/oliveold
+  username: oliveold
+  password: gc7c-5g4c2c3-4b1f9-2f4d8g3hj

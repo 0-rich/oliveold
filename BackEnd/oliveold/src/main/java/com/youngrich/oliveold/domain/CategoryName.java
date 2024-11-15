@@ -1,0 +1,6 @@
+package com.youngrich.oliveold.domain;
+
+public enum CategoryName {
+    SKINCARE, MASK_PACK, CLEANSING, SUNCARE, MAKEUP, NAIL, BEAUTY_TOOLS,
+    DERMOCOSMETIC, MENS_CARE, PERFUME_DIFFUSER, HAIRCARE, BODYCARE
+}
