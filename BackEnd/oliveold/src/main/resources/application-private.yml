@@ -1,0 +1,11 @@
+mysql:
+  url: jdbc:mysql://localhost:3306/oliveold
+  username: oliveold
+  password: gc7c-5g4c2c3-4b1f9-2f4d8g3hj
+
+kakao:
+  key: 7c1b7bc0eacc5b29f490cafe093bb814
+  url: http://localhost:8080/api/users/kakao/login
+
+jwt:
+  secret: 7409789ab39d1994745240116e723f2ce48f8a9aefabb89371f745f415a4ee1d01d87cb6231bddd01fdb1b54734e1a2a2672d7815e6f632139378cf79c9f5fbc
