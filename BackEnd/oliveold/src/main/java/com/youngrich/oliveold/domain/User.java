@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Getter
 @Entity(name = "user")
 public class User {
@@ -46,6 +47,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<UserLatest> userLatestes = new ArrayList<>();
 
+    // 카카오 유저 아이디
+    @Column(name = "user_id")
+    private Long userId;
+
     // 아이디
     @Column(name = "login_id", length = 45)
     private String loginId;
@@ -53,6 +58,9 @@ public class User {
     // 비밀번호
     @Column(name = "login_pw")
     private String loginPw;
+
+    // 이메일
+    private String email;
 
     // 이름
     @Column(length = 45)
@@ -84,4 +92,9 @@ public class User {
     // 결제 비밀번호
     @Column(name = "pin_pw")
     private int prinPw;
+
+    // 로그인 타입
+    @Enumerated(EnumType.STRING)
+    @Column(name = "login_type")
+    private LoginType loginType;
 }

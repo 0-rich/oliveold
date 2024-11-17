@@ -9,7 +9,7 @@ spring:
     url: ${mysql.url}
     username: ${mysql.username}
     password: ${mysql.password}
-#JPA
+# JPA
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
@@ -20,9 +20,34 @@ spring:
       hibernate:
         format_sql: true
 #        show_sql: true
+  # OAuth2 kakao 로그인
+  security:
+    oauth2:
+      client:
+        # OAuth2 인증 제공자에 대한 설정 정보
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token              # access token 요청 URI
+            user-info-uri: https://kapi.kakao.com/v2/user/me            # 사용자 profile 요청 URI
+            user-name-attribute: id
+        # 클라이언트 애플리케이션(Spring Boot)에 대한 설정
+        registration:
+          kakao:
+            client-id: ${kakao.key}
+            redirect-uri: ${kakao.url}
+            authorization-grant-type: authorization_code
+            client-authentication-method: POST
+            client-name: kakao
+kakao:
+  client-id: ${kakao.key}
+  redirect-uri: ${kakao.url}
 
 # logger를 통해 sql 확인
 logging:
   level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace   # 쿼리 파라미터 확인
+
+jwt:
+  key: ${jwt.secret}
