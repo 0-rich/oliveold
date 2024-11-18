@@ -1,4 +1,4 @@
-package com.youngrich.oliveold.util;
+package com.youngrich.oliveold.utils;
 
 import com.youngrich.oliveold.user.Response.AuthTokens;
 import lombok.RequiredArgsConstructor;

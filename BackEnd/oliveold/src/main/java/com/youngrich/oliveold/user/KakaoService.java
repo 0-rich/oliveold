@@ -7,8 +7,7 @@ import com.youngrich.oliveold.domain.LoginType;
 import com.youngrich.oliveold.domain.User;
 import com.youngrich.oliveold.user.Response.AuthTokens;
 import com.youngrich.oliveold.user.Response.LoginResponseDto;
-import com.youngrich.oliveold.util.AuthTokensGenerator;
-import com.youngrich.oliveold.util.JwtProvider;
+import com.youngrich.oliveold.utils.AuthTokensGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -119,12 +118,12 @@ public class KakaoService {
         }
 
         Long id = jsonNode.get("id").asLong();
-        String email = jsonNode.get("kakao_account").get("email").asText();
-        String nickname = jsonNode.get("properties").get("nickname").asText();
+//        String email = jsonNode.get("kakao_account").get("email").asText();
+//        String nickname = jsonNode.get("properties").get("nickname").asText();
 
         userInfo.put("id", id);
-        userInfo.put("email", email);
-        userInfo.put("nickname", nickname);
+//        userInfo.put("email", email);
+//        userInfo.put("nickname", nickname);
 
         return userInfo;
     }
@@ -132,17 +131,17 @@ public class KakaoService {
     // 3-1. 카카오ID로 회원가입 & 로그인 처리 메서드
     private LoginResponseDto kakaoUserLogin(HashMap<String, Object> userInfo){
         Long userId = Long.valueOf(userInfo.get("id").toString());
-        String kakaoEmail = userInfo.get("email").toString();
-        String nickname = userInfo.get("nickname").toString();
+//        String kakaoEmail = userInfo.get("email").toString();
+//        String nickname = userInfo.get("nickname").toString();
 
-        User kakaoUser = userRepository.findByEmail(kakaoEmail).orElse(null);
+        User kakaoUser = userRepository.findById(userId).orElse(null);
 
         // 이전 가입 정보가 없으면 회원가입
         if(kakaoUser == null) {
             kakaoUser = User.builder()
                     .userId(userId)
-                    .nickname(nickname)
-                    .email(kakaoEmail)
+//                    .nickname(nickname)
+//                    .email(kakaoEmail)
                     .loginType(LoginType.KAKAO)
                     .build();
             userRepository.save(kakaoUser);
@@ -151,7 +150,7 @@ public class KakaoService {
         // 토큰 생성
         AuthTokens token = authTokensGenerator.generate(userId.toString());
 
-        return new LoginResponseDto(userId, kakaoEmail, nickname, token);
+        return new LoginResponseDto(userId, token);
     }
 
 }

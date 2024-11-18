@@ -22,7 +22,7 @@ public class UserController {
 
     // 프론트에서 받은 인가코드 백엔드로 전달 -> 카카오에 토큰 요청
     @GetMapping("/kakao/login")
-    public ResponseEntity<LoginResponseDto> kakaoLogin(@RequestParam String code, HttpServletRequest request){
+    public ResponseEntity<LoginResponseDto> kakaoLogin(@RequestParam String code){
         try{
             LoginResponseDto responseDto = (LoginResponseDto) kakaoService.kakaoLogin(code);
             return ResponseEntity.ok(responseDto);

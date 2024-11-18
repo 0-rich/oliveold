@@ -60,7 +60,7 @@ public class User {
     private String loginPw;
 
     // 이메일
-    private String email;
+//    private String email;
 
     // 이름
     @Column(length = 45)

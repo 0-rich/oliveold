@@ -7,6 +7,7 @@ build/
 .DS_Store
 src/main/resources/application-private.yml
 application-private.yml
+**/application-private.yml
 
 ### STS ###
 .apt_generated

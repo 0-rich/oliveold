@@ -1,4 +1,4 @@
-package com.youngrich.oliveold.util;
+package com.youngrich.oliveold.utils;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
