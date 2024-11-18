@@ -9,7 +9,7 @@ src/main/resources/application-private.yml
 application-private.yml
 **/application-private.yml
 
-### STS ###
+### STS ###$
 .apt_generated
 .classpath
 .factorypath
