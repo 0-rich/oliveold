@@ -2,6 +2,7 @@
   height: 100%;
 }
 .body {
+  margin-top: 11.5vh;
   width: 100%;
 }
 
@@ -357,4 +358,48 @@
 .flaticon2 {
   margin-left: 1%;
   height: 2vh;
+}
+
+/* 오늘의 특가 */
+.today_header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.1vh;
+  font-weight: bold;
+  text-align: justify;
+  margin-top: 4%;
+  /* margin-left: 3%; */
+}
+.today_header span {
+  margin-bottom: 3%;
+}
+.today_header > span:last-child {
+  margin-right: 6%;
+  white-space: nowrap;
+}
+.today_header > span:last-child img {
+  margin-right: 5%;
+}
+
+/* 올영라이브 */
+.container_live {
+  display: flex;
+  gap: 100px;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 96%;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  margin-left: 2%;
+  margin-bottom: 7%;
+}
+.container_live::-webkit-scrollbar {
+  display: none;
+}
+.live {
+  width: 38%;
+}
+.live_img {
+  height: 45vh;
+  margin: 0;
 }
