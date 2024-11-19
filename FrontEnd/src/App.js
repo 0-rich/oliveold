@@ -6,6 +6,7 @@ import debounce from "lodash/debounce";
 import HomePage from "./components/Home/HomePage";
 import MyPage from "./components/MyPage/MyPage";
 import LoginPage from "./components/Auth/LoginPage";
+import Category from "./components/Category/Category";
 
 function App() {
   function setScreenSize() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/category" element={<Category />} />
         </Routes>
       </div>
     </Router>
