@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import debounce from "lodash/debounce";
 
 import HomePage from "./components/Home/HomePage";
+import MyPage from "./components/MyPage/MyPage";
 
 function App() {
   function setScreenSize() {
@@ -48,6 +49,7 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
       </div>
     </Router>

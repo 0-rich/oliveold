@@ -41,7 +41,6 @@ const HomePage = () => {
   const [showTopNav, setShowTopNav] = useState(false); // TopNav 보이기 여부
   const lastScrollY = useRef(0); // 스크롤 위치 추적
   const isThrottled = useRef(false); // 쓰로틀링을 위한 변수
-  const [scrollDirection, setScrollDirection] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {

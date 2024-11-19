@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./Header.module.css";
+import styles from "./Header_MyPage.module.css";
 
-const Header = ({ isVisible }) => {
+const Header_MyPage = ({ isVisible }) => {
   return (
     <div
       className={`${styles.header} ${
@@ -10,13 +10,17 @@ const Header = ({ isVisible }) => {
     >
       <div className={styles.container_header}>
         <div className={styles.container_logo}>
-          <img src="/images/logo.png" className={styles.logo} alt="" />
-          <span>올리브영</span>
+          <span>마이페이지</span>
         </div>
         <div className={styles.container_flaticon}>
           <img
-            src="/images/flaticon_search.png"
+            src="/images/flaticon_setting.png"
             className={styles.flaticon}
+            alt=""
+          />
+          <img
+            src="/images/flaticon_alram.png"
+            className={styles.flaticon2}
             alt=""
           />
           <img
@@ -30,4 +34,4 @@ const Header = ({ isVisible }) => {
   );
 };
 
-export default Header;
+export default Header_MyPage;

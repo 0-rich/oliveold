@@ -1,0 +1,117 @@
+.main {
+  height: 100%;
+}
+.body {
+  margin-top: 8vh;
+  width: 100%;
+}
+.nametag {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16% 5% 7% 5%;
+}
+.container_user {
+  display: block;
+  text-align: left;
+  /* justify-content: left; */
+}
+.userid {
+  font-weight: 600;
+  font-size: 20px;
+}
+.usergrade {
+  color: rgb(187, 187, 24);
+}
+.container_profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: rgb(231, 231, 231);
+  height: 50px;
+  width: 110px;
+  border-radius: 25px;
+}
+.container_flaticon {
+  display: flex;
+  justify-content: space-around;
+}
+.flaticon {
+  height: 3vh;
+  margin-bottom: 2%;
+}
+.container_review {
+  display: flex;
+  width: 90%;
+  height: 4vh;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 7px;
+  margin: auto;
+  margin-top: 10%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.reviewcnt {
+  font-weight: 600;
+}
+.container_order {
+  border-top: 13px solid #f0f0f0;
+  border-bottom: 13px solid #f0f0f0;
+  margin-top: 3%;
+  padding-bottom: 6%;
+}
+.order_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3%;
+}
+.order_header1 {
+  font-weight: 600;
+}
+.order_header2 {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.flaticon2 {
+  height: 1.7vh;
+}
+.orders {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.order {
+  color: rgb(139, 139, 139);
+  white-space: nowrap;
+}
+.ordercnt {
+  font-size: 30px;
+}
+.orderstatus {
+  font-size: 13px;
+}
+.contents {
+  text-align: left;
+  padding: 3%;
+  border: 1px solid #f0f0f0;
+}
+.content_header {
+  font-weight: 600;
+  padding: 10px 0;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 1% 0;
+}
+.flaticon3 {
+  height: 2.3vh;
+}
+.content_name {
+  padding: 10px;
+}
