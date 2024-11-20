@@ -11,7 +11,6 @@ public class UserLatest {
 
     // 최근 본 상품 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "latest_seq")
     private Long latestSeq;
 
     // 사용자

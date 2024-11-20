@@ -11,7 +11,6 @@ public class UserLike {
 
     // 좋아요 한 상품 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "like_seq")
     private Long likeSeq;
 
     // 사용자

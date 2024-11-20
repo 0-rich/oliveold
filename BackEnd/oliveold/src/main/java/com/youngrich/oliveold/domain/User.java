@@ -14,7 +14,6 @@ public class User {
 
     // 사용자 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_seq")
     private Long userSeq;
 
     // 등급
@@ -48,15 +47,12 @@ public class User {
     private List<UserLatest> userLatestes = new ArrayList<>();
 
     // 카카오 유저 아이디
-    @Column(name = "user_id")
     private Long userId;
 
     // 아이디
-    @Column(name = "login_id", length = 45)
     private String loginId;
 
     // 비밀번호
-    @Column(name = "login_pw")
     private String loginPw;
 
     // 이메일
@@ -78,23 +74,19 @@ public class User {
     private String nickname;
 
     // 프로필사진
-    @Column(name = "profile_img", length = 100)
+    @Column(length = 100)
     private String profileImg;
 
     // refreshToken: JWT refresh_token
-    @Column(name = "refresh_token")
     private String refreshToken;
 
     // 만료일시
-    @Column(name = "expired_at")
     private LocalDateTime expiredAt;
 
     // 결제 비밀번호
-    @Column(name = "pin_pw")
     private int prinPw;
 
     // 로그인 타입
     @Enumerated(EnumType.STRING)
-    @Column(name = "login_type")
     private LoginType loginType;
 }

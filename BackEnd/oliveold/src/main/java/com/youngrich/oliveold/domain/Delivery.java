@@ -16,7 +16,6 @@ public class Delivery {
     // 배송지 일련번호
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "delivery_seq")
     private Long deliverySeq;
 
     // 사용자 일련번호
@@ -31,7 +30,7 @@ public class Delivery {
     private Address address;
 
     // 이름
-    @Column(name = "person_name", length = 45)
+    @Column(length = 45)
     private String personName;
 
     // 연락처
@@ -39,7 +38,6 @@ public class Delivery {
     private String phone;
 
     // 공동현관 출입번호
-    @Column(name = "entrance_code")
     private int entranceCode;
 
     // 배송메시지
@@ -47,7 +45,6 @@ public class Delivery {
     private String message;
 
     // 기본배송지
-    @Column(name = "def_address")
     private boolean defAddress;
 
 }

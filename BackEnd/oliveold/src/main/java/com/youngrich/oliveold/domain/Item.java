@@ -14,7 +14,6 @@ public class Item {
 
     // 상품 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_seq")
     private Long itemSeq;
 
     // 카테고리
@@ -31,15 +30,13 @@ public class Item {
     private List<UserLatest> userLatestes = new ArrayList<>();
 
     // 상품명
-    @Column(name = "item_name", length = 45)
+    @Column(length = 45)
     private String itemName;
 
     // 대표 이미지
-    @Column(name = "item_img")
     private String itemImg;
 
     // 상세 이미지
-    @Column(name = "item_detail_img")
     private String itemDetailImg;
 
     // 가격

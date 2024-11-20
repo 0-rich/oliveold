@@ -14,10 +14,9 @@ public class Category {
 
     // 카테고리 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_seq")
     private Long categorySeq;
 
-    @Column(name = "category_name", length = 45)
+    @Column(length = 45)
     private String categoryName;
 
     // 상품
