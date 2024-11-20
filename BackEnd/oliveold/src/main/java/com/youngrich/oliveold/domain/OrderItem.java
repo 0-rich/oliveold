@@ -32,4 +32,8 @@ public class OrderItem {
 
     // 주문 수량
     private int count;
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

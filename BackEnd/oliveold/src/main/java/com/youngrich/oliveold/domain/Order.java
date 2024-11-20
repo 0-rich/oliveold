@@ -45,4 +45,22 @@ public class Order {
     // 배송완료일시
     private LocalDateTime deliveryDate;
 
+    // 연관관계 메서드 - 댜대일
+    public void setUser(User user){
+        this.user = user;
+        user.getOrders().add(this);
+    }
+
+    // 연관관계 메서드 - 일대다
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    // 연관관계 메서드 - 일대일
+    public void setDelivery(Delivery delivery){
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
+
 }

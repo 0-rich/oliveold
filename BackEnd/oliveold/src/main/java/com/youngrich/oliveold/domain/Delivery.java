@@ -47,4 +47,7 @@ public class Delivery {
     // 기본배송지
     private boolean defAddress;
 
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

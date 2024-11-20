@@ -40,4 +40,14 @@ public class Category {
     // 부모 입장에서 내 자식
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> child = new ArrayList<>();
+
+    // 연관관계 메서드
+    public void addChildCategory(Category child){
+        this.child.add(child);
+        child.setParent(this);
+    }
+
+    private void setParent(Category parent) {
+        this.parent = parent;
+    }
 }
