@@ -21,6 +21,6 @@ public class Cart {
     private User user;
 
     // 장바구니 상품
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartitems = new ArrayList<>();
 }

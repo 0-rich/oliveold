@@ -24,7 +24,7 @@ public class Order {
     private User user;
 
     // 주문상품
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     // 배송지

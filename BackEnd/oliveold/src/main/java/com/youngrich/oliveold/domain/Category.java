@@ -20,7 +20,7 @@ public class Category {
     private String categoryName;
 
     // 상품
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
 //    // 카테고리명
@@ -38,6 +38,6 @@ public class Category {
     private Category parent;
 
     // 부모 입장에서 내 자식
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> child = new ArrayList<>();
 }

@@ -18,7 +18,7 @@ public class Grade {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long gradeSeq;
 
-    @OneToMany(mappedBy = "grade")
+    @OneToMany(mappedBy = "grade", cascade = CascadeType.ALL)
     private List<User> users = new ArrayList<>();
 
     // 등급명

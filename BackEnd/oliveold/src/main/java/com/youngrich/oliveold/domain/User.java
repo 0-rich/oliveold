@@ -22,15 +22,15 @@ public class User {
     private Grade grade;
 
     // 배송지
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Delivery> delivery = new ArrayList<>();
 
     // 주문
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders = new ArrayList<>();
 
     // 계좌
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Account> accounts = new ArrayList<>();
 
     // 장바구니
@@ -39,11 +39,11 @@ public class User {
     private Cart cart;
 
     // 좋아요 한 상품
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserLike> userLikes = new ArrayList<>();
 
     // 최근 본 상품
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserLatest> userLatestes = new ArrayList<>();
 
     // 카카오 유저 아이디

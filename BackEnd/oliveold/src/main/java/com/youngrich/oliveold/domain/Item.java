@@ -22,11 +22,11 @@ public class Item {
     private Category category;
 
     // 좋아요 한 상품
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<UserLike> userLikes = new ArrayList<>();
 
     // 최근 본 상품
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<UserLatest> userLatestes = new ArrayList<>();
 
     // 상품명
