@@ -18,7 +18,7 @@ public class Cart {
     private Long cartSeq;
 
     // 사용자
-    @OneToOne(mappedBy = "cart")
+    @OneToOne(mappedBy = "cart", fetch = FetchType.LAZY)
     private User user;
 
     // 장바구니 상품

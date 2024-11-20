@@ -18,7 +18,7 @@ public class Item {
     private Long itemSeq;
 
     // 카테고리
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_seq")
     private Category category;
 

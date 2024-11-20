@@ -15,12 +15,12 @@ public class CartItem {
     private Long cartItemSeq;
 
     // 상품
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_seq", nullable = false)
     private Item item;
 
     // 장바구니
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_seq", nullable = false)
     private Cart cart;
 

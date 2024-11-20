@@ -34,7 +34,7 @@ public class Category {
 
     // 계층 구조
     // 자식 입장에서 내 부모
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
 

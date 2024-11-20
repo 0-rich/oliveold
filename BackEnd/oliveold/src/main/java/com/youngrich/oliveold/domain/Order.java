@@ -20,7 +20,7 @@ public class Order {
     private Long orderSeq;
 
     // 회원
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_seq")
     private User user;
 
@@ -29,7 +29,7 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     // 배송지
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_seq")
     private Delivery delivery;
 

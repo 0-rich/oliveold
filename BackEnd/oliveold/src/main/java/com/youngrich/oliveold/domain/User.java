@@ -18,7 +18,7 @@ public class User {
     private Long userSeq;
 
     // 등급
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "grade_seq")
     private Grade grade;
 
@@ -35,7 +35,7 @@ public class User {
     private List<Account> accounts = new ArrayList<>();
 
     // 장바구니
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_seq")
     private Cart cart;
 

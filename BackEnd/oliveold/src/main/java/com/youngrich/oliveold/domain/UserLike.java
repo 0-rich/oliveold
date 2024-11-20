@@ -15,12 +15,12 @@ public class UserLike {
     private Long likeSeq;
 
     // 사용자
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_seq")
     private User user;
 
     // 상품
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_seq")
     private Item item;
 }

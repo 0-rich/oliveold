@@ -15,7 +15,7 @@ public class Account {
     private Long accountSeq;
 
     // 사용자
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_seq")
     private User user;
 
