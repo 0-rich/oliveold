@@ -7,6 +7,7 @@ import com.youngrich.oliveold.domain.LoginType;
 import com.youngrich.oliveold.domain.User;
 import com.youngrich.oliveold.user.Response.AuthTokens;
 import com.youngrich.oliveold.user.Response.LoginResponseDto;
+import com.youngrich.oliveold.user.repository.UserRepository;
 import com.youngrich.oliveold.utils.AuthTokensGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
