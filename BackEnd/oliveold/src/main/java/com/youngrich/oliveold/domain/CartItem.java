@@ -11,7 +11,7 @@ public class CartItem {
 
     // 장바구니 상품 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_item_seq", nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private Long cartItemSeq;
 
     // 상품

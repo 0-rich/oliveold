@@ -14,7 +14,6 @@ public class Cart {
 
     // 장바구니 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cart_seq")
     private Long cartSeq;
 
     // 사용자
@@ -22,6 +21,6 @@ public class Cart {
     private User user;
 
     // 장바구니 상품
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     private List<CartItem> cartitems = new ArrayList<>();
 }

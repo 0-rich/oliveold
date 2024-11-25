@@ -14,14 +14,13 @@ public class Category {
 
     // 카테고리 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_seq")
     private Long categorySeq;
 
-    @Column(name = "category_name", length = 45)
+    @Column(length = 45)
     private String categoryName;
 
     // 상품
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Item> items = new ArrayList<>();
 
 //    // 카테고리명
@@ -39,6 +38,16 @@ public class Category {
     private Category parent;
 
     // 부모 입장에서 내 자식
-    @OneToMany(mappedBy = "parent")
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
     private List<Category> child = new ArrayList<>();
+
+    // 연관관계 메서드
+    public void addChildCategory(Category child){
+        this.child.add(child);
+        child.setParent(this);
+    }
+
+    private void setParent(Category parent) {
+        this.parent = parent;
+    }
 }

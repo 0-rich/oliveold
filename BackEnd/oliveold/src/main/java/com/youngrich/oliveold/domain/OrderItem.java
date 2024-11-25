@@ -11,7 +11,6 @@ public class OrderItem {
 
     // 주문 상품 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_item_seq")
     private Long orderItemSeq;
 
     // 상품
@@ -29,9 +28,12 @@ public class OrderItem {
     private OrderItemStatus status;
 
     // 주문 당시 상품 가격
-    @Column(name = "order_price")
     private int orderPrice;
 
     // 주문 수량
     private int count;
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

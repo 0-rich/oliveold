@@ -1,6 +1,5 @@
-package com.youngrich.oliveold.user.Response;
+package com.youngrich.oliveold.user.dto.Response;
 
-import com.youngrich.oliveold.domain.LoginType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

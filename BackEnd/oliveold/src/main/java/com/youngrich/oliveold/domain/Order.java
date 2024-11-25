@@ -16,7 +16,6 @@ public class Order {
 
     // 주문 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_seq")
     private Long orderSeq;
 
     // 회원
@@ -25,7 +24,7 @@ public class Order {
     private User user;
 
     // 주문상품
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     // 배송지
@@ -34,11 +33,9 @@ public class Order {
     private Delivery delivery;
 
     // 주문번호
-    @Column(name = "order_serial")
     private String orderSerial;
 
     // 구매일시
-    @Column(name = "order_date")
     private LocalDateTime orderDate;
 
     // 구매상태
@@ -46,7 +43,24 @@ public class Order {
     private OrderStatus status;
 
     // 배송완료일시
-    @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
+
+    // 연관관계 메서드 - 댜대일
+    public void setUser(User user){
+        this.user = user;
+        user.getOrders().add(this);
+    }
+
+    // 연관관계 메서드 - 일대다
+    public void addOrderItem(OrderItem orderItem){
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    // 연관관계 메서드 - 일대일
+    public void setDelivery(Delivery delivery){
+        this.delivery = delivery;
+        delivery.setOrder(this);
+    }
 
 }

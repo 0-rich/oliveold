@@ -1,6 +1,6 @@
 package com.youngrich.oliveold.utils;
 
-import com.youngrich.oliveold.user.Response.AuthTokens;
+import com.youngrich.oliveold.user.dto.Response.AuthTokens;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

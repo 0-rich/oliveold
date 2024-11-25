@@ -1,4 +1,4 @@
-package com.youngrich.oliveold.user.Response;
+package com.youngrich.oliveold.user.dto.Response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

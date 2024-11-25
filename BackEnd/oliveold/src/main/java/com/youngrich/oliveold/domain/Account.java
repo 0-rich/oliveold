@@ -11,7 +11,6 @@ public class Account {
 
     // 계좌 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_seq")
     private Long accountSeq;
 
     // 사용자
@@ -20,7 +19,7 @@ public class Account {
     private User user;
 
     // 계좌번호
-    @Column(name = "account_number", length = 45)
+    @Column(length = 45)
     private String accountNumber;
 
     // 은행
@@ -28,6 +27,5 @@ public class Account {
     private String bank;
 
     // 대표 계좌 여부
-    @Column(name = "rep_account")
     private boolean repAccount;
 }
