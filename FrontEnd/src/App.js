@@ -8,6 +8,7 @@ import MyPage from "./components/MyPage/MyPage";
 import LoginPage from "./components/Auth/LoginPage";
 import Category from "./components/Category/Category";
 import Search from "./components/Search/Search";
+import History from "./components/History/History";
 
 function App() {
   function setScreenSize() {
@@ -56,6 +57,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/category" element={<Category />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/history" element={<History />} />
         </Routes>
       </div>
     </Router>
