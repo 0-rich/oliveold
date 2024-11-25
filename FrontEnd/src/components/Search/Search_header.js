@@ -1,16 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Category_header.module.css";
+import styles from "./Search_header.module.css";
 
-const Category_header = () => {
+const Search_header = () => {
   const handleBackClick = () => {
     window.history.back();
   };
 
   const navigate = useNavigate();
 
-  const goSearch = () => {
-    navigate("/search");
+  const goCart = () => {
+    navigate("/cart");
     window.scrollTo(0, 0);
   };
 
@@ -23,16 +23,16 @@ const Category_header = () => {
           alt=""
           onClick={handleBackClick}
         />
-        카테고리
+        상품 검색
         <img
-          src="/images/flaticon_search.png"
+          src="/images/flaticon_cart.png"
           className={styles.flaticon}
           alt=""
-          onClick={goSearch}
+          onClick={goCart}
         />
       </div>
     </div>
   );
 };
 
-export default Category_header;
+export default Search_header;

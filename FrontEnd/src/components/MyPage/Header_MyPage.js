@@ -1,7 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Header_MyPage.module.css";
 
 const Header_MyPage = ({ isVisible }) => {
+  const navigate = useNavigate();
+
+  const goCart = () => {
+    navigate("/cart");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div
       className={`${styles.header} ${
@@ -27,6 +35,7 @@ const Header_MyPage = ({ isVisible }) => {
             src="/images/flaticon_cart.png"
             className={styles.flaticon}
             alt=""
+            onClick={goCart}
           />
         </div>
       </div>

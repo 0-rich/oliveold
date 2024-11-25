@@ -1,0 +1,67 @@
+.body {
+  width: 100%;
+  margin: 13% 0;
+}
+.search_container {
+  display: flex;
+  align-items: center;
+}
+.search_box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 88%;
+  background-color: #ddd;
+  border: 0;
+  border-radius: 20px;
+  margin: 10px auto 5px auto;
+}
+.input_search {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 90%;
+  height: 4vh;
+  margin: 0;
+  padding-left: 3%;
+}
+.flaticon {
+  height: 2vh;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.flaticon2 {
+  height: 2.5vh;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.line {
+  height: 1px;
+  background-color: #ddd;
+  margin: 0;
+}
+.search_header {
+  text-align: left;
+  margin: 3% 0 0 3%;
+  font-size: 18px;
+  font-weight: bold;
+}
+.recommended_keywords {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
+  justify-content: left;
+  margin: 3%;
+}
+.recommended_keyword {
+  display: inline-block;
+  background-color: #ddd;
+  border: 0;
+  border-radius: 20px;
+  padding: 5px 10px; /* 텍스트와 상하좌우 여백 */
+  text-align: center; /* 텍스트 정렬 */
+  font-size: 14px; /* 텍스트 크기 */
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  cursor: pointer; /* 클릭 가능한 스타일 */
+}
