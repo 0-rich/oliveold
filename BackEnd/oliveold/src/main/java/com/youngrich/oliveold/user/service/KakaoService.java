@@ -1,12 +1,12 @@
-package com.youngrich.oliveold.user;
+package com.youngrich.oliveold.user.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.youngrich.oliveold.domain.LoginType;
 import com.youngrich.oliveold.domain.User;
-import com.youngrich.oliveold.user.Response.AuthTokens;
-import com.youngrich.oliveold.user.Response.LoginResponseDto;
+import com.youngrich.oliveold.user.dto.Response.AuthTokens;
+import com.youngrich.oliveold.user.dto.Response.LoginResponseDto;
 import com.youngrich.oliveold.user.repository.UserRepository;
 import com.youngrich.oliveold.utils.AuthTokensGenerator;
 import lombok.RequiredArgsConstructor;

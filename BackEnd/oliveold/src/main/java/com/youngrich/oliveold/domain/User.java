@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Builder
-@Getter
+@Getter @Setter
 @Entity(name = "user")
 public class User {
 
@@ -84,7 +84,7 @@ public class User {
     private LocalDateTime expiredAt;
 
     // 결제 비밀번호
-    private int prinPw;
+    private int pinPw;
 
     // 로그인 타입
     @Enumerated(EnumType.STRING)

@@ -3,15 +3,16 @@ package com.youngrich.oliveold.user.repository;
 import com.youngrich.oliveold.domain.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class UserRepositoryImpl {
+@RequiredArgsConstructor
+public class UserRepositoryImpl implements UserRepositoryCustom{
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
     public void save(User user){
         em.persist(user);
@@ -26,9 +27,9 @@ public class UserRepositoryImpl {
                 .getResultList();
     }
 
-    public List<User> findByName(String name){
-        return em.createQuery("select m from Member u where u.name = :name", User.class)
-                .setParameter("name", name)
+    public List<User> findByPhone(String phone){
+        return em.createQuery("select m from Member u where u.phone = :phone", User.class)
+                .setParameter("phone", phone)
                 .getResultList();
     }
 }
