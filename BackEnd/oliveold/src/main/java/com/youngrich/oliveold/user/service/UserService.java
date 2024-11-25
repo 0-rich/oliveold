@@ -58,9 +58,4 @@ public class UserService {
         }
     }
 
-
-    // 5. 결제 비밀번호 생성
-
-    // 6. 결제 비밀번호 수정
-
 }

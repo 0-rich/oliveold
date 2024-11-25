@@ -1,4 +1,4 @@
-package com.youngrich.oliveold.user;
+package com.youngrich.oliveold.user.controller;
 
 import com.youngrich.oliveold.user.dto.Response.LoginResponseDto;
 import com.youngrich.oliveold.user.dto.Request.UserInfoDto;
@@ -54,6 +54,7 @@ public class UserController {
     }
 
     // 4. 회원 탈퇴
+    @DeleteMapping()
     public ResponseEntity<?> deleteUserInfo(Authentication authentication){
         try {
             userService.deleteUserInfo(authentication);
@@ -63,7 +64,4 @@ public class UserController {
         }
     }
 
-    // 5. 결제 비밀번호 생성
-
-    // 6. 결제 비밀번호 수정
 }
