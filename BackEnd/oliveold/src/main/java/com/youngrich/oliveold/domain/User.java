@@ -89,4 +89,7 @@ public class User {
     // 로그인 타입
     @Enumerated(EnumType.STRING)
     private LoginType loginType;
+
+    // 탈퇴 여부
+    private boolean state;
 }

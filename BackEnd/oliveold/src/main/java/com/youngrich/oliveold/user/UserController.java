@@ -54,7 +54,14 @@ public class UserController {
     }
 
     // 4. 회원 탈퇴
-    
+    public ResponseEntity<?> deleteUserInfo(Authentication authentication){
+        try {
+            userService.deleteUserInfo(authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 5. 결제 비밀번호 생성
 

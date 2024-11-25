@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -44,8 +46,18 @@ public class UserService {
         }
     }
 
-
     // 4. 회원탈퇴
+    public void deleteUserInfo(Authentication authentication) {
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElse(null);
+        if(user != null){
+            // 탈퇴 여부 및 만료 일시만 변경
+            user.setState(true);
+            user.setExpiredAt(LocalDateTime.now());
+        }else {
+            throw new IllegalArgumentException("회원 정보가 없습니다.");
+        }
+    }
+
 
     // 5. 결제 비밀번호 생성
 
