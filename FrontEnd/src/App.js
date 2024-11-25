@@ -9,6 +9,8 @@ import LoginPage from "./components/Auth/LoginPage";
 import Category from "./components/Category/Category";
 import Search from "./components/Search/Search";
 import History from "./components/History/History";
+import Quick_Payment from "./components/MyPage/Quick_Payment";
+import Quick_Payment_Manage from "./components/MyPage/Quick_Payment_Manage";
 
 function App() {
   function setScreenSize() {
@@ -58,6 +60,12 @@ function App() {
           <Route path="/category" element={<Category />} />
           <Route path="/search" element={<Search />} />
           <Route path="/history" element={<History />} />
+
+          <Route path="/quickpayment" element={<Quick_Payment />} />
+          <Route
+            path="/quickpayment/manage"
+            element={<Quick_Payment_Manage />}
+          />
         </Routes>
       </div>
     </Router>

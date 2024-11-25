@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Header_MyPage from "./Header_MyPage";
 import styles from "./MyPage.module.css";
 import BottomNav from "../Common/BottomNav";
@@ -41,6 +42,13 @@ const MyPage = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [showHeader, showBottomNav]);
+
+  const navigate = useNavigate();
+
+  const goQuickPayment = () => {
+    navigate("/quickpayment");
+    window.location.reload();
+  };
 
   return (
     <div>
@@ -232,7 +240,9 @@ const MyPage = () => {
               src="/images/flaticon_giftcard.png"
               alt=""
             />
-            <span className={styles.content_name}>빠른 결제</span>
+            <span className={styles.content_name} onClick={goQuickPayment}>
+              빠른 결제
+            </span>
           </div>
           <div className={styles.content}>
             <img
