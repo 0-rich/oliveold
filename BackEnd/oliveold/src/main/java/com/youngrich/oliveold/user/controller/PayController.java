@@ -19,7 +19,7 @@ public class PayController {
     private final PayService payService;
 
     // 5. 결제 비밀번호 생성
-    @PostMapping("/payment/pw")
+    @PostMapping("/payment")
     public ResponseEntity<?> createPinPw(@RequestBody PaymentInfoDto paymentInfoDto, Authentication authentication){
         try{
             payService.createPinPw(paymentInfoDto, authentication);
@@ -31,6 +31,7 @@ public class PayController {
 
 
     // 6. 결제 비밀번호 수정
+    @PutMapping("/payment")
     public ResponseEntity<?> updatePinPw(@RequestBody PaymentInfoDto paymentInfoDto, Authentication authentication){
         try {
             payService.createPinPw(paymentInfoDto, authentication);
