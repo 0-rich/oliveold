@@ -22,7 +22,7 @@ public class AccountService {
     private final UserRepository userRepository;
     private final AccountRepository accountRepository;
 
-    // 1. 빠른 결제 계좌 등록
+    // 1. 계좌 등록
     public void registAccount(AccountInfoDto accountInfo, Authentication authentication) {
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElse(null);
         if(user != null){
@@ -38,7 +38,8 @@ public class AccountService {
         }
     }
 
-    // 2. 빠른 결제 대표 계좌 조회
+    // 2. 대표 계좌 조회
+    @Transactional(readOnly = true)
     public AccountInfoDto getPrimaryAccount(Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
@@ -49,7 +50,8 @@ public class AccountService {
         return new AccountInfoDto(account.getAccountSeq(), account.getAccountNumber(), account.getBank(), account.isRepAccount());
     }
 
-    // 3. 빠른 결제 전체 계좌 조회
+    // 3. 전체 계좌 조회
+    @Transactional(readOnly = true)
     public List<AccountInfoDto> getAllAccount(Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
@@ -70,7 +72,7 @@ public class AccountService {
         return accountInfoDtos;
     }
 
-    // 4. 빠른 결제 계좌 삭제
+    // 4. 계좌 삭제
     public void deleteAccount(AccountSeqInfo accountSeqInfo, Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
@@ -80,7 +82,7 @@ public class AccountService {
         accountRepository.delete(account);
     }
 
-    // 5. 대표 결제 계좌 설정
+    // 5. 대표 계좌 변경
     public void setPrimaryAccount(AccountSeqInfo accountSeqInfo, Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));

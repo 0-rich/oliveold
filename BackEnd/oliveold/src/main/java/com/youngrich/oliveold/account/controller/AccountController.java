@@ -20,7 +20,7 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    // 1. 빠른 결제 계좌 등록
+    // 1. 계좌 등록
     @PostMapping()
     public ResponseEntity<?> registAccount(@RequestBody AccountInfoDto accountInfo, Authentication authentication){
         try{
@@ -31,7 +31,7 @@ public class AccountController {
         }
     }
 
-    // 2. 빠른 결제 대표 계좌 조회
+    // 2. 대표 계좌 조회
     @GetMapping()
     public AccountInfoDto getPrimaryAccount(Authentication authentication){
         try{
@@ -41,7 +41,7 @@ public class AccountController {
         }
     }
 
-    // 3. 빠른 결제 전체 계좌 조회
+    // 3. 전체 계좌 조회
     @GetMapping("/all")
     public List<AccountInfoDto> getAllAccount(Authentication authentication){
         try{
@@ -51,7 +51,7 @@ public class AccountController {
         }
     }
 
-    // 4. 빠른 결제 계좌 삭제
+    // 4. 계좌 삭제
     @DeleteMapping()
     public ResponseEntity<?> deleteAccount(@RequestBody AccountSeqInfo accountSeqInfo, Authentication authentication){
         try{
@@ -62,7 +62,7 @@ public class AccountController {
         }
     }
 
-    // 5. 대표 결제 계좌 설정
+    // 5. 대표 계좌 변경
     @PostMapping("/primary")
     public ResponseEntity<?> setPrimaryAccount(@RequestBody AccountSeqInfo accountSeqInfo, Authentication authentication){
         try{
