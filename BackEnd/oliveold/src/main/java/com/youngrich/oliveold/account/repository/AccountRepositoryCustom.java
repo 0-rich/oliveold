@@ -6,4 +6,5 @@ public interface AccountRepositoryCustom {
 
     // 대표 계좌 조회
     public Account findOne(Long userSeq);
+
 }

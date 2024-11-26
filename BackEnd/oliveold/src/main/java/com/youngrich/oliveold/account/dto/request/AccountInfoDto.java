@@ -13,5 +13,6 @@ public class AccountInfoDto {
 
     private String accountNumber;
     private String bank;
+    private boolean repAccount;
 
 }

@@ -11,6 +11,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -43,10 +46,28 @@ public class AccountService {
         Account account = accountRepository.findOne(user.getUserSeq());
         if(account == null) throw new IllegalArgumentException("대표 계좌 정보가 없습니다.");
         // Dto 반환
-        return new AccountInfoDto(account.getAccountNumber(), account.getBank());
+        return new AccountInfoDto(account.getAccountNumber(), account.getBank(), account.isRepAccount());
     }
 
     // 3. 빠른 결제 전체 계좌 조회
+    public List<AccountInfoDto> getAllAccount(Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 전체 계좌 조회
+        List<Account> accounts = accountRepository.findByUser(user);
+        if(accounts.isEmpty()) throw new IllegalArgumentException("계좌 정보가 없습니다.");
+        //Dto 반환
+        List<AccountInfoDto> accountInfoDtos = new ArrayList<>();
+        for(Account account : accounts){
+            AccountInfoDto accountInfoDto = AccountInfoDto.builder()
+                    .accountNumber(account.getAccountNumber())
+                    .bank(account.getBank())
+                    .repAccount(account.isRepAccount())
+                    .build();
+            accountInfoDtos.add(accountInfoDto);
+        }
+        return accountInfoDtos;
+    }
 
     // 4. 빠른 결제 계좌 삭제
 

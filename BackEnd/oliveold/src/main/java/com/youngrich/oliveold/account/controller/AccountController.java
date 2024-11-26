@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -40,6 +41,14 @@ public class AccountController {
     }
 
     // 3. 빠른 결제 전체 계좌 조회
+    @GetMapping("/all")
+    public List<AccountInfoDto> getAllAccount(Authentication authentication){
+        try{
+            return accountService.getAllAccount(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 4. 빠른 결제 계좌 삭제
 
