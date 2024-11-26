@@ -2,11 +2,13 @@ package com.youngrich.oliveold.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "account")
 @Getter
+@Builder
 public class Account {
 
     // 계좌 일련번호
@@ -28,4 +30,9 @@ public class Account {
 
     // 대표 계좌 여부
     private boolean repAccount;
+
+    // 대표 계좌 변경
+    public void setPrimary(boolean isRepAccount){
+        this.repAccount = isRepAccount;
+    }
 }
