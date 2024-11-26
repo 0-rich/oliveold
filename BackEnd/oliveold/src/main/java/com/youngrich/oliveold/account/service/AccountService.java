@@ -1,6 +1,7 @@
 package com.youngrich.oliveold.account.service;
 
 import com.youngrich.oliveold.account.dto.request.AccountInfoDto;
+import com.youngrich.oliveold.account.dto.request.DeleteAccountInfo;
 import com.youngrich.oliveold.account.repository.AccountRepository;
 import com.youngrich.oliveold.domain.Account;
 import com.youngrich.oliveold.domain.User;
@@ -46,7 +47,7 @@ public class AccountService {
         Account account = accountRepository.findOne(user.getUserSeq());
         if(account == null) throw new IllegalArgumentException("대표 계좌 정보가 없습니다.");
         // Dto 반환
-        return new AccountInfoDto(account.getAccountNumber(), account.getBank(), account.isRepAccount());
+        return new AccountInfoDto(account.getAccountSeq(), account.getAccountNumber(), account.getBank(), account.isRepAccount());
     }
 
     // 3. 빠른 결제 전체 계좌 조회
@@ -60,6 +61,7 @@ public class AccountService {
         List<AccountInfoDto> accountInfoDtos = new ArrayList<>();
         for(Account account : accounts){
             AccountInfoDto accountInfoDto = AccountInfoDto.builder()
+                    .accountSeq(account.getAccountSeq())
                     .accountNumber(account.getAccountNumber())
                     .bank(account.getBank())
                     .repAccount(account.isRepAccount())
@@ -70,6 +72,15 @@ public class AccountService {
     }
 
     // 4. 빠른 결제 계좌 삭제
+    public void deleteAccount(DeleteAccountInfo deleteAccountInfo, Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 계좌 조회
+        Account account = accountRepository.findByIdAndUserId(deleteAccountInfo.getAccountSeq(), user.getUserSeq()).orElseThrow(() -> new IllegalArgumentException("계좌 정보를 찾을 수 없거나 권한이 없습니다."));
+        // 계좌 삭제
+        accountRepository.delete(account);
+    }
+
 
     // 5. 대표 결제 계좌 설정
 

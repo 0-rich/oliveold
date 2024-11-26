@@ -11,6 +11,10 @@ import java.util.Optional;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long>, AccountRepositoryCustom {
 
-    public List<Account> findByUser(User user);
+    // 전체 계좌 조회
+    List<Account> findByUser(User user);
+
+    // 특정 계좌 조회
+    Optional<Account> findByIdAndUserId(Long accountSeq, Long userSeq);
 
 }

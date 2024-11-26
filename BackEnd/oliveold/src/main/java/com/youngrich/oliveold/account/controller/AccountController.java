@@ -1,6 +1,7 @@
 package com.youngrich.oliveold.account.controller;
 
 import com.youngrich.oliveold.account.dto.request.AccountInfoDto;
+import com.youngrich.oliveold.account.dto.request.DeleteAccountInfo;
 import com.youngrich.oliveold.account.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -51,6 +52,15 @@ public class AccountController {
     }
 
     // 4. 빠른 결제 계좌 삭제
+    @DeleteMapping()
+    public ResponseEntity<?> deleteAccount(@RequestBody DeleteAccountInfo deleteAccountInfo, Authentication authentication){
+        try{
+            accountService.deleteAccount(deleteAccountInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 5. 대표 결제 계좌 설정
 
