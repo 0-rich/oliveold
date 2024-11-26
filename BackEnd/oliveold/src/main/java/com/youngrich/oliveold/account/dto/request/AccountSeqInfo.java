@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeleteAccountInfo {
+public class AccountSeqInfo {
 
     private Long accountSeq;
 

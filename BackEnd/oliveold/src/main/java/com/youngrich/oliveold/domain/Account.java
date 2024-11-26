@@ -30,4 +30,9 @@ public class Account {
 
     // 대표 계좌 여부
     private boolean repAccount;
+
+    // 대표 계좌 변경
+    public void setPrimary(boolean isRepAccount){
+        this.repAccount = isRepAccount;
+    }
 }
