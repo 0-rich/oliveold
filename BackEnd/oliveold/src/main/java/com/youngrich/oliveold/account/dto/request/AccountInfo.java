@@ -1,4 +1,4 @@
-package com.youngrich.oliveold.user.dto.Request;
+package com.youngrich.oliveold.account.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentInfoDto {
+public class AccountInfo {
 
-    private int pinPw;
+    private String accountNumber;
+    private String bank;
 
 }

@@ -2,11 +2,13 @@ package com.youngrich.oliveold.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "account")
 @Getter
+@Builder
 public class Account {
 
     // 계좌 일련번호
