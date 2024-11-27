@@ -16,6 +16,7 @@ public class Grade {
 
     // 등급 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+<<<<<<< HEAD
     @Column(name = "grade_seq")
     private Long gradeSeq;
 
@@ -32,5 +33,20 @@ public class Grade {
 
     // 적립률
     @Column(name = "reward_rate")
+=======
+    private Long gradeSeq;
+
+    @OneToMany(mappedBy = "grade", cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
+
+    // 등급명
+    @Column(length = 45)
+    private String gradeName;
+
+    // 기준 금액
+    private int criteriaAmount;
+
+    // 적립률
+>>>>>>> lost-work
     private double rewardRate;
 }
