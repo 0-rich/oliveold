@@ -2,13 +2,13 @@ package com.youngrich.oliveold.delivery.controller;
 
 
 import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
+import com.youngrich.oliveold.delivery.dto.NewDeliveryInfo;
 import com.youngrich.oliveold.delivery.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -42,6 +42,15 @@ public class DeliveryController {
     }
 
     // 3. 배송지 추가 등록
+    @PostMapping()
+    public ResponseEntity<?> registDelivery(@RequestBody NewDeliveryInfo newDeliveryInfo, Authentication authentication){
+        try{
+             deliveryService.registDelivery(newDeliveryInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 4. 배송지 삭제
 
