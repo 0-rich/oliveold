@@ -22,6 +22,7 @@ public class DeliveryService {
     private final DeliverlyRepository deliverlyRepository;
 
     // 1. 전체 배송지 조회
+    @Transactional(readOnly = true)
     public List<DeliveryInfo> getAllDelivery(Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
@@ -45,6 +46,22 @@ public class DeliveryService {
     }
 
     // 2. 기본 배송지 조회
+    @Transactional(readOnly = true)
+    public DeliveryInfo getPrimaryDelivery(Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 전체 배송지 조회
+        Delivery delivery = deliverlyRepository.findOne(user.getUserSeq());
+        if(delivery == null) throw new IllegalArgumentException("기본 배송지 정보가 없습니다");
+        return DeliveryInfo.builder()
+                .deliverySeq(delivery.getDeliverySeq())
+                .personName(delivery.getPersonName())
+                .phone(delivery.getPhone())
+                .entranceCode(delivery.getEntranceCode())
+                .message(delivery.getMessage())
+                .defAddress(delivery.isDefAddress())
+                .build();
+    }
 
     // 3. 배송지 추가 등록
 

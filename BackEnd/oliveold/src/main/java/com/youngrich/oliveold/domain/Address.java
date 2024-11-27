@@ -8,18 +8,6 @@ import lombok.Getter;
 @Getter
 public class Address {
     // 배송지명
-<<<<<<< HEAD
-//    @Column(name = "place_name", length = 45, nullable = false)
-    private String placeName;
-
-    // 주소
-//    @Column(length = 100, nullable = false)
-    private String address;
-
-    // 상세주소
-//    @Column(name = "address_detail", length = 100, nullable = false)
-    private String addressDetail;
-=======
     private String placeName;
 
     // 주소
@@ -34,5 +22,4 @@ public class Address {
         this.address = address;
         this.addressDetail = addressDetail;
     }
->>>>>>> lost-work
 }

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface DeliverlyRepository extends JpaRepository<Delivery, Long> {
+public interface DeliverlyRepository extends JpaRepository<Delivery, Long>, DeliveryRepositoryCustom {
 
     // 전체 계좌 조회
     List<Delivery> findByUser(User user);

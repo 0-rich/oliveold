@@ -32,6 +32,14 @@ public class DeliveryController {
     }
 
     // 2. 기본 배송지 조회
+    @GetMapping("/primary")
+    public DeliveryInfo getPrimaryDelivery(Authentication authentication){
+        try{
+            return deliveryService.getPrimaryDelivery(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 3. 배송지 추가 등록
 

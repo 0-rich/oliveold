@@ -16,50 +16,26 @@ public class Order {
 
     // 주문 일련번호
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
-    @Column(name = "order_seq")
-    private Long orderSeq;
-
-    // 회원
-    @ManyToOne
-=======
     private Long orderSeq;
 
     // 회원
     @ManyToOne(fetch = FetchType.LAZY)
->>>>>>> lost-work
     @JoinColumn(name = "user_seq")
     private User user;
 
     // 주문상품
-<<<<<<< HEAD
-    @OneToMany(mappedBy = "order")
-    private List<OrderItem> orderItems = new ArrayList<>();
-
-    // 배송지
-    @OneToOne
-=======
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     // 배송지
     @OneToOne(fetch = FetchType.LAZY)
->>>>>>> lost-work
     @JoinColumn(name = "delivery_seq")
     private Delivery delivery;
 
     // 주문번호
-<<<<<<< HEAD
-    @Column(name = "order_serial")
     private String orderSerial;
 
     // 구매일시
-    @Column(name = "order_date")
-=======
-    private String orderSerial;
-
-    // 구매일시
->>>>>>> lost-work
     private LocalDateTime orderDate;
 
     // 구매상태
@@ -67,11 +43,6 @@ public class Order {
     private OrderStatus status;
 
     // 배송완료일시
-<<<<<<< HEAD
-    @Column(name = "delivery_date")
-    private LocalDateTime deliveryDate;
-
-=======
     private LocalDateTime deliveryDate;
 
     // 연관관계 메서드 - 댜대일
@@ -92,5 +63,4 @@ public class Order {
         delivery.setOrder(this);
     }
 
->>>>>>> lost-work
 }
