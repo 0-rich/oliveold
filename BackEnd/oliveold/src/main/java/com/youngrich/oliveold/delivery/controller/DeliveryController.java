@@ -2,6 +2,7 @@ package com.youngrich.oliveold.delivery.controller;
 
 
 import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
+import com.youngrich.oliveold.delivery.dto.DeliverySeqInfo;
 import com.youngrich.oliveold.delivery.dto.NewDeliveryInfo;
 import com.youngrich.oliveold.delivery.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
@@ -64,8 +65,17 @@ public class DeliveryController {
     }
 
     // 5. 배송지 삭제
+    @DeleteMapping()
+    public ResponseEntity<?> deleteDelivery(@RequestBody DeliverySeqInfo deliverySeqInfo, Authentication authentication){
+        try{
+            deliveryService.deleteDelivery(deliverySeqInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    // 6. 기본 배송지 설정
+    // 6. 기본 배송지 변경
 
     // 7. 공동현관 출입번호 등록
 

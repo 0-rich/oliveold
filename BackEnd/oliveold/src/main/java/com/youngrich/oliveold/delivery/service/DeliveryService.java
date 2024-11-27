@@ -1,6 +1,7 @@
 package com.youngrich.oliveold.delivery.service;
 
 import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
+import com.youngrich.oliveold.delivery.dto.DeliverySeqInfo;
 import com.youngrich.oliveold.delivery.dto.NewDeliveryInfo;
 import com.youngrich.oliveold.delivery.repository.DeliverlyRepository;
 import com.youngrich.oliveold.domain.Delivery;
@@ -91,8 +92,15 @@ public class DeliveryService {
     }
 
     // 5. 배송지 삭제
+    public void deleteDelivery(DeliverySeqInfo deliverySeqInfo, Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 배송지 조회
+        Delivery delivery = deliverlyRepository.findBySeqAndUser(deliverySeqInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        deliverlyRepository.delete(delivery);
+    }
 
-    // 6. 기본 배송지 설정
+    // 6. 기본 배송지 변경
 
     // 7. 공동현관 출입번호 등록
 
