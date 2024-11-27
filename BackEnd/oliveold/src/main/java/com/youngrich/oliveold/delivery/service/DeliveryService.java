@@ -78,12 +78,24 @@ public class DeliveryService {
         deliverlyRepository.save(delivery);
     }
 
-    // 4. 배송지 삭제
+    // 4. 배송지 정보 수정
+    public void modifyDelivery(DeliveryInfo deliveryInfo, Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        Delivery delivery = deliverlyRepository.findBySeqAndUser(deliveryInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        // 수정된 필드만 업데이트
+        if(deliveryInfo.getPersonName() != null) delivery.setPersonName(deliveryInfo.getPersonName());
+        if(deliveryInfo.getPhone() != null) delivery.setPhone(deliveryInfo.getPhone());
+        if(deliveryInfo.getEntranceCode() != delivery.getEntranceCode()) delivery.setEntranceCode(deliveryInfo.getEntranceCode());
+        if(deliveryInfo.getMessage() != null) delivery.setMessage(deliveryInfo.getMessage());
+    }
 
-    // 5. 기본 배송지 설정
+    // 5. 배송지 삭제
 
-    // 6. 공동현관 출입번호 등록
+    // 6. 기본 배송지 설정
 
-    // 7. 배송 메시지 등록
+    // 7. 공동현관 출입번호 등록
+
+    // 8. 배송 메시지 등록
 
 }

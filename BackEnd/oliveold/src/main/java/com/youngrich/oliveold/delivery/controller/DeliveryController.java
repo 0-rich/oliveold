@@ -52,12 +52,23 @@ public class DeliveryController {
         }
     }
 
-    // 4. 배송지 삭제
+    // 4. 배송지 정보 수정
+    @PatchMapping()
+    public ResponseEntity<?> modifyDelivery(@RequestBody DeliveryInfo deliveryInfo, Authentication authentication){
+        try{
+            deliveryService.modifyDelivery(deliveryInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    // 5. 기본 배송지 설정
+    // 5. 배송지 삭제
 
-    // 6. 공동현관 출입번호 등록
+    // 6. 기본 배송지 설정
 
-    // 7. 배송 메시지 등록
+    // 7. 공동현관 출입번호 등록
+
+    // 8. 배송 메시지 등록
 
 }

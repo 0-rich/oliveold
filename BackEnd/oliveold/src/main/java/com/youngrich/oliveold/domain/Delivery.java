@@ -4,12 +4,9 @@ import com.youngrich.oliveold.domain.Address;
 import com.youngrich.oliveold.domain.Order;
 import com.youngrich.oliveold.domain.User;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Getter
+@Getter @Setter
 @Builder
 @Entity(name = "delivery")
 public class Delivery {
