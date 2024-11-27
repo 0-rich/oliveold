@@ -87,14 +87,13 @@ public class AccountService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 기존 대표 계좌 조회
-        Account account1 = accountRepository.findOne(user.getUserSeq());
-        if(account1 == null) throw new IllegalArgumentException("대표 계좌 정보가 없습니다.");
+        Account beforeAccount = accountRepository.findOne(user.getUserSeq());
+        if(beforeAccount == null) throw new IllegalArgumentException("대표 계좌 정보가 없습니다.");
         // 현재 대표 계좌 해제
         accountRepository.unsetPrimary(user.getUserSeq());
         // 대표 계좌 설정
-        Account account2 = accountRepository.findByIdAndUserId(accountSeqInfo.getAccountSeq(), user.getUserSeq()).orElseThrow(() -> new IllegalArgumentException("계좌 정보를 찾을 수 없거나 권한이 없습니다."));
-        account2.setPrimary(true);
-        accountRepository.save(account2);
+        Account newAccount = accountRepository.findByIdAndUserId(accountSeqInfo.getAccountSeq(), user.getUserSeq()).orElseThrow(() -> new IllegalArgumentException("계좌 정보를 찾을 수 없거나 권한이 없습니다."));
+        newAccount.setPrimary(true);
     }
 
 }

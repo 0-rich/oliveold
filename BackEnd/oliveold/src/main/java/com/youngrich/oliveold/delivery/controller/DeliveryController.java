@@ -76,6 +76,15 @@ public class DeliveryController {
     }
 
     // 6. 기본 배송지 변경
+    @PostMapping("/primary")
+    public ResponseEntity<?> setPrimaryDelivery(@RequestBody DeliverySeqInfo deliverySeqInfo, Authentication authentication){
+        try{
+            deliveryService.setPrimaryDelivery(deliverySeqInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 7. 공동현관 출입번호 등록
 

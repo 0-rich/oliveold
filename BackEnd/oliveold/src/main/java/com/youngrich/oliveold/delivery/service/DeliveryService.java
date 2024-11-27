@@ -52,7 +52,7 @@ public class DeliveryService {
     public DeliveryInfo getPrimaryDelivery(Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
-        // 전체 배송지 조회
+        // 기본 배송지 조회
         Delivery delivery = deliverlyRepository.findOne(user.getUserSeq());
         if(delivery == null) throw new IllegalArgumentException("기본 배송지 정보가 없습니다");
         return DeliveryInfo.builder()
@@ -101,6 +101,18 @@ public class DeliveryService {
     }
 
     // 6. 기본 배송지 변경
+    public void setPrimaryDelivery(DeliverySeqInfo deliverySeqInfo, Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 기존 기본 배송지 조회
+        Delivery beforeDelivery = deliverlyRepository.findOne(user.getUserSeq());
+        if(beforeDelivery == null) throw new IllegalArgumentException("기본 배송지 정보가 없습니다");
+        // 현재 기본 배송지 해제
+        beforeDelivery.setDefAddress(false);
+        // 새 기본 배송지 설정
+        Delivery newDelivery = deliverlyRepository.findBySeqAndUser(deliverySeqInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다."));
+        newDelivery.setDefAddress(true);
+    }
 
     // 7. 공동현관 출입번호 등록
 
