@@ -3,6 +3,7 @@ package com.youngrich.oliveold.delivery.controller;
 
 import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
 import com.youngrich.oliveold.delivery.dto.DeliverySeqInfo;
+import com.youngrich.oliveold.delivery.dto.EntranceCodeInfo;
 import com.youngrich.oliveold.delivery.dto.NewDeliveryInfo;
 import com.youngrich.oliveold.delivery.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
@@ -87,6 +88,15 @@ public class DeliveryController {
     }
 
     // 7. 공동현관 출입번호 등록
+    @PostMapping("/entrance")
+    public ResponseEntity<?> setEntranceNumber(@RequestBody EntranceCodeInfo entranceCodeInfo, Authentication authentication){
+        try{
+            deliveryService.setEntranceNumber(entranceCodeInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 8. 배송 메시지 등록
 
