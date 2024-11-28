@@ -1,14 +1,13 @@
 package com.youngrich.oliveold.delivery.controller;
 
 
-import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
+import com.youngrich.oliveold.delivery.dto.*;
 import com.youngrich.oliveold.delivery.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -32,15 +31,79 @@ public class DeliveryController {
     }
 
     // 2. 기본 배송지 조회
+    @GetMapping("/primary")
+    public DeliveryInfo getPrimaryDelivery(Authentication authentication){
+        try{
+            return deliveryService.getPrimaryDelivery(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 3. 배송지 추가 등록
+    @PostMapping()
+    public ResponseEntity<?> registDelivery(@RequestBody NewDeliveryInfo newDeliveryInfo, Authentication authentication){
+        try{
+             deliveryService.registDelivery(newDeliveryInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    // 4. 배송지 삭제
+    // 4. 배송지 정보 수정
+    @PatchMapping()
+    public ResponseEntity<?> modifyDelivery(@RequestBody DeliveryInfo deliveryInfo, Authentication authentication){
+        try{
+            deliveryService.modifyDelivery(deliveryInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    // 5. 기본 배송지 설정
+    // 5. 배송지 삭제
+    @DeleteMapping()
+    public ResponseEntity<?> deleteDelivery(@RequestBody DeliverySeqInfo deliverySeqInfo, Authentication authentication){
+        try{
+            deliveryService.deleteDelivery(deliverySeqInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    // 6. 공동현관 출입번호 등록
+    // 6. 기본 배송지 변경
+    @PostMapping("/primary")
+    public ResponseEntity<?> setPrimaryDelivery(@RequestBody DeliverySeqInfo deliverySeqInfo, Authentication authentication){
+        try{
+            deliveryService.setPrimaryDelivery(deliverySeqInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
-    // 7. 배송 메시지 등록
+    // 7. 공동현관 출입번호 등록
+    @PostMapping("/entrance")
+    public ResponseEntity<?> setEntranceNumber(@RequestBody EntranceCodeInfo entranceCodeInfo, Authentication authentication){
+        try{
+            deliveryService.setEntranceNumber(entranceCodeInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // 8. 배송 메시지 등록
+    @PostMapping("/message")
+    public ResponseEntity<?> setDeliveryMessgae(@RequestBody DeliveryMessageInfo deliveryMessageInfo, Authentication authentication){
+        try{
+            deliveryService.setDeliveryMessgae(deliveryMessageInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
