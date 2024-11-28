@@ -1,9 +1,6 @@
 package com.youngrich.oliveold.delivery.service;
 
-import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
-import com.youngrich.oliveold.delivery.dto.DeliverySeqInfo;
-import com.youngrich.oliveold.delivery.dto.EntranceCodeInfo;
-import com.youngrich.oliveold.delivery.dto.NewDeliveryInfo;
+import com.youngrich.oliveold.delivery.dto.*;
 import com.youngrich.oliveold.delivery.repository.DeliverlyRepository;
 import com.youngrich.oliveold.domain.Delivery;
 import com.youngrich.oliveold.domain.User;
@@ -126,5 +123,13 @@ public class DeliveryService {
     }
 
     // 8. 배송 메시지 등록
+    public void setDeliveryMessgae(DeliveryMessageInfo deliveryMessageInfo, Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 배송지 조회
+        Delivery delivery = deliverlyRepository.findBySeqAndUser(deliveryMessageInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        // 배송 메시지 변경
+        delivery.setMessage(deliveryMessageInfo.getMessage());
+    }
 
 }

@@ -1,10 +1,7 @@
 package com.youngrich.oliveold.delivery.controller;
 
 
-import com.youngrich.oliveold.delivery.dto.DeliveryInfo;
-import com.youngrich.oliveold.delivery.dto.DeliverySeqInfo;
-import com.youngrich.oliveold.delivery.dto.EntranceCodeInfo;
-import com.youngrich.oliveold.delivery.dto.NewDeliveryInfo;
+import com.youngrich.oliveold.delivery.dto.*;
 import com.youngrich.oliveold.delivery.service.DeliveryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -99,5 +96,14 @@ public class DeliveryController {
     }
 
     // 8. 배송 메시지 등록
+    @PostMapping("/message")
+    public ResponseEntity<?> setDeliveryMessgae(@RequestBody DeliveryMessageInfo deliveryMessageInfo, Authentication authentication){
+        try{
+            deliveryService.setDeliveryMessgae(deliveryMessageInfo, authentication);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
