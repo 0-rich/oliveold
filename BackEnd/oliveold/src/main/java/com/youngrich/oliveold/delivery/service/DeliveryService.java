@@ -1,7 +1,7 @@
 package com.youngrich.oliveold.delivery.service;
 
 import com.youngrich.oliveold.delivery.dto.*;
-import com.youngrich.oliveold.delivery.repository.DeliverlyRepository;
+import com.youngrich.oliveold.delivery.repository.DeliveryRepository;
 import com.youngrich.oliveold.domain.Delivery;
 import com.youngrich.oliveold.domain.User;
 import com.youngrich.oliveold.user.repository.UserRepository;
@@ -19,7 +19,7 @@ import java.util.List;
 public class DeliveryService {
 
     private final UserRepository userRepository;
-    private final DeliverlyRepository deliverlyRepository;
+    private final DeliveryRepository deliveryRepository;
 
     // 1. 전체 배송지 조회
     @Transactional(readOnly = true)
@@ -27,7 +27,7 @@ public class DeliveryService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 전체 배송지 조회
-        List<Delivery> deliveries = deliverlyRepository.findByUser(user);
+        List<Delivery> deliveries = deliveryRepository.findByUser(user);
         if(deliveries.isEmpty()) throw new IllegalArgumentException("배송지 정보가 없습니다");
         // Dto 반환
         List<DeliveryInfo> deliveryInfos = new ArrayList<>();
@@ -51,7 +51,7 @@ public class DeliveryService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 기본 배송지 조회
-        Delivery delivery = deliverlyRepository.findOne(user.getUserSeq());
+        Delivery delivery = deliveryRepository.findDeliveryByUserSeq(user.getUserSeq());
         if(delivery == null) throw new IllegalArgumentException("기본 배송지 정보가 없습니다");
         return DeliveryInfo.builder()
                 .deliverySeq(delivery.getDeliverySeq())
@@ -74,14 +74,14 @@ public class DeliveryService {
                 .message(newDeliveryInfo.getMessage())
                 .defAddress(false)
                 .build();
-        deliverlyRepository.save(delivery);
+        deliveryRepository.save(delivery);
     }
 
     // 4. 배송지 정보 수정
     public void modifyDelivery(DeliveryInfo deliveryInfo, Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
-        Delivery delivery = deliverlyRepository.findBySeqAndUser(deliveryInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        Delivery delivery = deliveryRepository.findByDeliverySeqAndUser(deliveryInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
         // 수정된 필드만 업데이트
         if(deliveryInfo.getPersonName() != null) delivery.setPersonName(deliveryInfo.getPersonName());
         if(deliveryInfo.getPhone() != null) delivery.setPhone(deliveryInfo.getPhone());
@@ -94,8 +94,8 @@ public class DeliveryService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 배송지 조회
-        Delivery delivery = deliverlyRepository.findBySeqAndUser(deliverySeqInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
-        deliverlyRepository.delete(delivery);
+        Delivery delivery = deliveryRepository.findByDeliverySeqAndUser(deliverySeqInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        deliveryRepository.delete(delivery);
     }
 
     // 6. 기본 배송지 변경
@@ -103,12 +103,12 @@ public class DeliveryService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 기존 기본 배송지 조회
-        Delivery beforeDelivery = deliverlyRepository.findOne(user.getUserSeq());
+        Delivery beforeDelivery = deliveryRepository.findDeliveryByUserSeq(user.getUserSeq());
         if(beforeDelivery == null) throw new IllegalArgumentException("기본 배송지 정보가 없습니다");
         // 현재 기본 배송지 해제
         beforeDelivery.setDefAddress(false);
         // 새 기본 배송지 설정
-        Delivery newDelivery = deliverlyRepository.findBySeqAndUser(deliverySeqInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다."));
+        Delivery newDelivery = deliveryRepository.findByDeliverySeqAndUser(deliverySeqInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다."));
         newDelivery.setDefAddress(true);
     }
 
@@ -117,7 +117,7 @@ public class DeliveryService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 배송지 조회
-        Delivery delivery = deliverlyRepository.findBySeqAndUser(entranceCodeInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        Delivery delivery = deliveryRepository.findByDeliverySeqAndUser(entranceCodeInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
         // 출입번호 변경
         delivery.setEntranceCode(entranceCodeInfo.getEntranceCode());
     }
@@ -127,7 +127,7 @@ public class DeliveryService {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
         // 배송지 조회
-        Delivery delivery = deliverlyRepository.findBySeqAndUser(deliveryMessageInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
+        Delivery delivery = deliveryRepository.findByDeliverySeqAndUser(deliveryMessageInfo.getDeliverySeq(), user).orElseThrow(() -> new IllegalArgumentException("배송지 정보가 없습니다"));
         // 배송 메시지 변경
         delivery.setMessage(deliveryMessageInfo.getMessage());
     }
