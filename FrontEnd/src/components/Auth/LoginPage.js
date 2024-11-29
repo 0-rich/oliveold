@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
+import AuthenticationService from "./AuthenticationService";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -8,6 +9,10 @@ const LoginPage = () => {
   const goHome = () => {
     navigate("/");
     window.scrollTo(0, 0);
+  };
+
+  const handleKakaoLogin = () => {
+    AuthenticationService.loginSocialKakao(); // 카카오 로그인 URL로 리다이렉트
   };
 
   return (
@@ -39,7 +44,7 @@ const LoginPage = () => {
         <div>아이디 찾기</div>
         <div>비밀번호 찾기</div>
       </div>
-      <div className={styles.kakaobtn}>
+      <div className={styles.kakaobtn} onClick={handleKakaoLogin}>
         <img
           src="/images/flaticon_kakaoblack.png"
           className={styles.flaticon}

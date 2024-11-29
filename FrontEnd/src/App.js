@@ -11,6 +11,10 @@ import Search from "./components/Search/Search";
 import History from "./components/History/History";
 import Quick_Payment from "./components/MyPage/Quick_Payment";
 import Quick_Payment_Manage from "./components/MyPage/Quick_Payment_Manage";
+import Cart from "./components/Cart/Cart";
+
+import PrivateRoute from "./components/Auth/PrivateRoute";
+import OAuth2RedirectHandler from "./components/Auth/OAuth2RedirectHandler";
 
 function App() {
   function setScreenSize() {
@@ -18,7 +22,7 @@ function App() {
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
 
-  const [isAuthenticated, setIsAuthenticated] = useState(true); // useEffect로 실행될 때마다 작동 되게 => 로그인 유무 관리
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // useEffect로 실행될 때마다 작동 되게 => 로그인 유무 관리
 
   useEffect(() => {
     setScreenSize(); // 초기 설정
@@ -29,11 +33,9 @@ function App() {
 
     window.addEventListener("resize", handleResize); // 화면 크기 변경 시 이벤트 리스너 추가
 
-    const checkTokenInLocalStorage = () => {
-      const token = localStorage.getItem("token");
-      return token === null;
-    };
-    setIsAuthenticated(checkTokenInLocalStorage());
+    // 로그인 여부 확인 및 상태 업데이트
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(token !== null);
 
     // 이미지 우클릭 방지
     const preventImageContextMenu = (event) => {
@@ -55,16 +57,29 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/mypage" element={<MyPage />} />
+          <Route
+            path="/mypage"
+            element={
+              <PrivateRoute isAuthenticated={isAuthenticated}>
+                <MyPage />
+              </PrivateRoute>
+            }
+          />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/category" element={<Category />} />
           <Route path="/search" element={<Search />} />
           <Route path="/history" element={<History />} />
+          <Route path="/cart" element={<Cart />} />
 
           <Route path="/quickpayment" element={<Quick_Payment />} />
           <Route
             path="/quickpayment/manage"
             element={<Quick_Payment_Manage />}
+          />
+          <Route
+            // path="/oauth/callback/kakao"
+            path="/api/users/kakao/login"
+            element={<OAuth2RedirectHandler />}
           />
         </Routes>
       </div>
