@@ -30,7 +30,6 @@ public class Item {
     private List<UserLatest> userLatestes = new ArrayList<>();
 
     // 상품명
-    @Column(length = 45)
     private String itemName;
 
     // 대표 이미지

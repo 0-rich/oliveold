@@ -21,6 +21,7 @@ public class AuthenticationConfig {
                 .csrf(csrf -> csrf.disable())               // CSRF 보호 비활성화
                 .cors(cors -> cors.configure(http))         // CORS 활성화
                 .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/**").permitAll()          // 특정 경로 허용
                         .requestMatchers("/api/users/kakao/login").permitAll()          // 특정 경로 허용
                         .requestMatchers(HttpMethod.POST, "/api/**").authenticated() // POST 요청 인증
                         .requestMatchers(HttpMethod.PUT, "/api/**").authenticated()  // PUT 요청 인증

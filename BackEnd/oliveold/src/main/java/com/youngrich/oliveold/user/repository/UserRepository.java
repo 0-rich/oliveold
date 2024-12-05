@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long>, UserRepositoryCustom {
 
     // 1. userId로 사용자 찾기
-    Optional<User> findById(Long userId);
+    Optional<User> findByUserId(Long userId);
 
     // 2. 휴대폰번호로 사용자 찾기
     List<User> findByPhone(String phone);
