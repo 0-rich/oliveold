@@ -65,7 +65,10 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/login" element={<LoginPage />} />
+          <Route
+            path="/login"
+            element={<LoginPage setIsAuthenticated={setIsAuthenticated} />}
+          />
           <Route path="/category" element={<Category />} />
           <Route path="/search" element={<Search />} />
           <Route path="/history" element={<History />} />
@@ -77,7 +80,6 @@ function App() {
             element={<Quick_Payment_Manage />}
           />
           <Route
-            // path="/oauth/callback/kakao"
             path="/api/users/kakao/login"
             element={<OAuth2RedirectHandler />}
           />

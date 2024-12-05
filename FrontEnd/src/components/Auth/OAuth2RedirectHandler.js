@@ -18,8 +18,10 @@ const OAuth2RedirectHandler = () => {
           console.log("로그인 성공:", data);
           // 백엔드에서 받은 액세스 토큰을 로컬 스토리지에 저장
           localStorage.setItem("token", data.accessToken);
+          localStorage.setItem("refreshToken", data.refreshToken);
 
           // 로그인 성공 후 mypage로 리디렉션
+          console.log("토큰 저장 완료, 페이지 이동 중...");
           navigate("/mypage");
         })
         .catch((error) => {

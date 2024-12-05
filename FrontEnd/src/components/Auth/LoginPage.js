@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.css";
 import AuthenticationService from "./AuthenticationService";
 
-const LoginPage = () => {
+const LoginPage = ({ setIsAuthenticated }) => {
   const navigate = useNavigate();
 
   const goHome = () => {
@@ -11,8 +11,19 @@ const LoginPage = () => {
     window.scrollTo(0, 0);
   };
 
+  useEffect(() => {
+    // localStorage에서 token을 가져와서 로그인 상태를 확인
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // 토큰이 있으면 mypage로 리디렉션
+      setIsAuthenticated(true);
+      navigate("/mypage");
+    }
+  }, []);
+
   const handleKakaoLogin = () => {
-    AuthenticationService.loginSocialKakao(); // 카카오 로그인 URL로 리다이렉트
+    AuthenticationService.loginSocialKakao(); // 카카오 로그인 URL로 리디렉트
   };
 
   return (
