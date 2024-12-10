@@ -27,6 +27,9 @@ public class Delivery {
     @Embedded
     private Address address;
 
+    // 배송지명
+    private String placeName;
+
     // 이름
     @Column(length = 45)
     private String personName;

@@ -1,5 +1,6 @@
 package com.youngrich.oliveold.order.controller;
 
+import com.youngrich.oliveold.order.dto.OrderDeliveryInfo;
 import com.youngrich.oliveold.order.dto.OrderItemInfo;
 import com.youngrich.oliveold.order.service.OrderService;
 import com.youngrich.oliveold.user.dto.Response.LoginResponseDto;
@@ -7,13 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -43,7 +42,14 @@ public class OrderController {
         }
     }
 
-    // 3.주문 상세내역 조회
-    
+    // 3. 주문 상세내역 조회 - 배송지 정보
+    @GetMapping("/{orderSeq}")
+    public OrderDeliveryInfo getOrderDetail(Authentication authentication, @PathVariable("orderSeq") Long orderSeq){
+        try{
+            return orderService.getOrderDetail(authentication, orderSeq);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

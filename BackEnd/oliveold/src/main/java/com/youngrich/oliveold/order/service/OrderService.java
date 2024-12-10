@@ -1,9 +1,7 @@
 package com.youngrich.oliveold.order.service;
 
-import com.youngrich.oliveold.domain.Order;
-import com.youngrich.oliveold.domain.OrderItem;
-import com.youngrich.oliveold.domain.OrderStatus;
-import com.youngrich.oliveold.domain.User;
+import com.youngrich.oliveold.domain.*;
+import com.youngrich.oliveold.order.dto.OrderDeliveryInfo;
 import com.youngrich.oliveold.order.dto.OrderItemDetailInfo;
 import com.youngrich.oliveold.order.dto.OrderItemInfo;
 import com.youngrich.oliveold.order.repository.OrderRepository;
@@ -102,5 +100,27 @@ public class OrderService {
         return orderItemInfos;
     }
 
-    // 3.주문 상세내역 조회
+    // 3.주문 상세내역 조회 - 배송지 정보
+    @Transactional(readOnly = true)
+    public OrderDeliveryInfo getOrderDetail(Authentication authentication, Long orderSeq) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 특정 주문 배송지 내역 조회
+        Order order = orderRepository.findOneOrder(user.getUserSeq(), orderSeq).orElseThrow(() -> new IllegalArgumentException("주문 내역이 없습니다."));
+        Delivery delivery = order.getDelivery();
+        // Dto 반환
+        OrderDeliveryInfo orderDeliveryInfo = OrderDeliveryInfo.builder()
+                .deliverySeq(delivery.getDeliverySeq())
+                .personName(delivery.getPersonName())
+                .phone(delivery.getPhone())
+                .address(new Address(delivery.getAddress().getPlaceName(), delivery.getAddress().getAddress(), delivery.getAddress().getAddressDetail()))
+                .entranceCode(delivery.getEntranceCode())
+                .message(delivery.getMessage())
+                .defAddress(delivery.isDefAddress())
+                .build();
+
+        return orderDeliveryInfo;
+
+    }
+
 }
