@@ -34,6 +34,14 @@ public class OrderController {
     }
 
     // 2. 최소/반품/교환 내역 조회
+    @GetMapping("/item")
+    public List<OrderItemInfo> getOrderUnDeliveryItem(Authentication authentication){
+        try{
+            return orderService.getOrderUnDeliveryItem(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
     // 3.주문 상세내역 조회
 

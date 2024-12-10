@@ -40,6 +40,7 @@ public class OrderService {
             List<OrderItemDetailInfo> orderItemDetailInfos = new ArrayList<>();
             for(OrderItem oi : order.getOrderItems()){
                 OrderItemDetailInfo orderItemDetailInfo = OrderItemDetailInfo.builder()
+                        .orderItemState(oi.getStatus())
                         .orderPrice(oi.getOrderPrice())
                         .count(oi.getCount())
                         .itemName(oi.getItem().getItemName())
@@ -64,6 +65,42 @@ public class OrderService {
     }
 
     // 2. 최소/반품/교환 내역 조회
+    @Transactional(readOnly = true)
+    public List<OrderItemInfo> getOrderUnDeliveryItem(Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 전체 최소/반품/교환 내역 조회
+        List<Order> orders = orderRepository.findAllUnOrders(user.getUserSeq());
+        // Dto 반환
+        List<OrderItemInfo> orderItemInfos = new ArrayList<>();
+        for(Order order : orders){
+            // OrderItemDetailInfo 리스트 구성
+            List<OrderItemDetailInfo> orderItemDetailInfos = new ArrayList<>();
+            for(OrderItem oi : order.getOrderItems()){
+                OrderItemDetailInfo orderItemDetailInfo = OrderItemDetailInfo.builder()
+                        .orderItemState(oi.getStatus())
+                        .orderPrice(oi.getOrderPrice())
+                        .count(oi.getCount())
+                        .itemName(oi.getItem().getItemName())
+                        .itemImg(oi.getItem().getItemImg())
+                        .itemDetailImg(oi.getItem().getItemDetailImg())
+                        .price(oi.getItem().getPrice())
+                        .build();
+                orderItemDetailInfos.add(orderItemDetailInfo);
+            }
+            // OrderItemInfo 리스트 구성
+            OrderItemInfo orderItemInfo = OrderItemInfo.builder()
+                    .orderSeq(order.getOrderSeq())
+                    .orderSerial(order.getOrderSerial())
+                    .orderDate(order.getOrderDate())
+                    .status(order.getStatus())
+                    .deliveryDate(order.getDeliveryDate())
+                    .orderItems(orderItemDetailInfos)
+                    .build();
+            orderItemInfos.add(orderItemInfo);
+        }
+        return orderItemInfos;
+    }
 
     // 3.주문 상세내역 조회
 }

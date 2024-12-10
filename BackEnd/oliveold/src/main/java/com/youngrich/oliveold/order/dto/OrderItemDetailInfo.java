@@ -1,5 +1,6 @@
 package com.youngrich.oliveold.order.dto;
 
+import com.youngrich.oliveold.domain.OrderItemStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class OrderItemDetailInfo {
 
     // order-item
+    // 주문 상품 상태
+    private OrderItemStatus orderItemState;
     // 주문 가격
     private int orderPrice;
     // 수량

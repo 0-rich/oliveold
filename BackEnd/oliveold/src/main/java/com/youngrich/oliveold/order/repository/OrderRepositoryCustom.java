@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface OrderRepositoryCustom {
 
-    // 전체 주문내역 조회 - fetch join
+    // 전체 주문 내역 조회 - fetch join
     List<Order> findAllOrders(Long userSeq);
+
+    // 취소/반품/교환 내역 조회 - fetch join
+    List<Order> findAllUnOrders(Long userSeq);
 
 }
