@@ -40,7 +40,7 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom{
 
         return em.createQuery(jpql, Order.class)
                 .setParameter("userSeq", userSeq)
-                .setParameter("statuses", List.of(OrderItemStatus.CANCELLED, OrderItemStatus.RETURNED, OrderItemStatus.EXCHANGED))
+                .setParameter("statuses", List.of(OrderItemStatus.CANCELED, OrderItemStatus.RETURNED, OrderItemStatus.EXCHANGED))
                 .getResultList();
 
     }
