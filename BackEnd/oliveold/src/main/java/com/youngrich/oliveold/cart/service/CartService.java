@@ -41,11 +41,24 @@ public class CartService {
         }else{
             // 존재하지 않는 경우 새 cartItem으로 장바구니에 추가
             cartItem = new CartItem(item, cart, cartItemInfo.getCount());
-            cart.getCartitems().add(cartItem);
+            cart.getCartitems().add(cartItem);  // 연관관계에 추가
         }
 
         cartItemRepository.save(cartItem);
     }
 
     // 2. 장바구니 상품 삭제
+    public void deleteItemCart(Authentication authentication, Long cartItemSeq) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 장바구니 조회
+        Cart cart = cartRepository.findByUser(user).orElseThrow(() -> new IllegalArgumentException("장바구니가 없습니다."));
+        // 장바구니 상품 조회
+        CartItem cartItem = cartItemRepository.findByCartItemSeqAndCart(cartItemSeq, cart).orElseThrow(() -> new IllegalArgumentException("장바구니에 해당 상품이 없습니다."));
+
+        // 장바구니 상품 삭제
+        cart.getCartitems().remove(cartItem);   // 연관관계에서 삭제
+        cartItemRepository.delete(cartItem);
+    }
+
 }

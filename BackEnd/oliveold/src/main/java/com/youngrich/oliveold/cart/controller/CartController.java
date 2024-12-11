@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.NoSuchElementException;
@@ -32,5 +30,15 @@ public class CartController {
     }
 
     // 2. 장바구니 상품 삭제
+    @DeleteMapping("/{cartItemSeq}")
+    public ResponseEntity<?> deleteItemCart(Authentication authentication, @PathVariable("cartItemSeq") Long cartItemSeq){
+        try{
+            cartService.deleteItemCart(authentication, cartItemSeq);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }
