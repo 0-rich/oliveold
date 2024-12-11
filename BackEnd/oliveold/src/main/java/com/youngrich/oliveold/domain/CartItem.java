@@ -27,4 +27,15 @@ public class CartItem {
     // 수량
     private int count;
 
+    // 수량 업데이트 메서드
+    public void updateCount(int newCount){
+        this.count = newCount;
+    }
+
+    public CartItem(Item item, Cart cart, int count){
+        this.item = item;
+        this.cart = cart;
+        this.count = count;
+    }
+
 }
