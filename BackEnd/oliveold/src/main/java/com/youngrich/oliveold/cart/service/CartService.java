@@ -1,5 +1,6 @@
 package com.youngrich.oliveold.cart.service;
 
+import com.youngrich.oliveold.cart.dto.CartItemDeatilInfo;
 import com.youngrich.oliveold.cart.dto.CartItemInfo;
 import com.youngrich.oliveold.cart.repository.CartItemRepository;
 import com.youngrich.oliveold.cart.repository.CartRepository;
@@ -13,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -87,5 +91,33 @@ public class CartService {
     }
 
     // 4. 장바구니 내역 조회
+    public List<CartItemDeatilInfo> getCartItem(Authentication authentication) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 장바구니 조회
+        Cart cart = cartRepository.findByUser(user).orElseThrow(() -> new IllegalArgumentException("장바구니가 없습니다."));
+        // 장바구니 상품 조회
+        List<CartItem> cartItems = cartItemRepository.findByCart(cart);
+
+        if(cartItems.isEmpty()) throw new IllegalArgumentException("장바구니에 상품이 없습니다.");
+
+        // Dto 반환
+        List<CartItemDeatilInfo> cartItemDeatilInfos = new ArrayList<>();
+        for(CartItem cartItem : cartItems){
+            CartItemDeatilInfo cartItemDeatilInfo = CartItemDeatilInfo.builder()
+                    .itemSeq(cartItem.getItem().getItemSeq())
+                    .cartItemSeq(cartItem.getCartItemSeq())
+                    .category(cartItem.getItem().getCategory())
+                    .itemName(cartItem.getItem().getItemName())
+                    .itemImg(cartItem.getItem().getItemImg())
+                    .itemDetailImg(cartItem.getItem().getItemDetailImg())
+                    .price(cartItem.getItem().getPrice())
+                    .count(cartItem.getCount())
+                    .build();
+            cartItemDeatilInfos.add(cartItemDeatilInfo);
+        }
+
+        return cartItemDeatilInfos;
+    }
 
 }

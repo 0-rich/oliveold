@@ -1,5 +1,6 @@
 package com.youngrich.oliveold.cart.controller;
 
+import com.youngrich.oliveold.cart.dto.CartItemDeatilInfo;
 import com.youngrich.oliveold.cart.dto.CartItemInfo;
 import com.youngrich.oliveold.cart.service.CartService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -52,6 +54,13 @@ public class CartController {
     }
 
     // 4. 장바구니 내역 조회
-
+    @GetMapping()
+    public List<CartItemDeatilInfo> getCartItem(Authentication authentication){
+        try {
+            return cartService.getCartItem(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

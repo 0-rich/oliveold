@@ -20,9 +20,9 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom{
     // 전체 주문 내역 조회 - fetch join
     public List<Order> findAllOrders(Long userSeq){
 
-        String jpql = "select o from Order o" +
-                "join fetch o.orderItem oi" +
-                "join fetch oi.item i" +
+        String jpql = "select o from Order o " +
+                "join fetch o.orderItem oi " +
+                "join fetch oi.item i " +
                 "where o.userSeq = :userSeq";
 
         return em.createQuery(jpql, Order.class)
@@ -33,10 +33,10 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom{
     // 취소/반품/교환 내역 조회 - fetch join
     public List<Order> findAllUnOrders(Long userSeq){
 
-        String jpql = "select o from Order o" +
-                "join fetch o.orderItem oi" +
-                "join fetch oi.item i" +
-                "where o.userSeq = :userSeq" +
+        String jpql = "select o from Order o " +
+                "join fetch o.orderItem oi " +
+                "join fetch oi.item i " +
+                "where o.userSeq = :userSeq " +
                 "and where oi.status in :statuses";
 
         return em.createQuery(jpql, Order.class)
@@ -49,9 +49,9 @@ public class OrderRepositoryImpl implements OrderRepositoryCustom{
     // 주문 상세 내역 조회 - 배송지 정보
     public Optional<Order> findOneOrder(Long userSeq, Long orderSeq){
 
-        String jpql = "select o from Order o" +
-                "join fetch o.delivery d" +
-                "where o.userSeq = :userSeq" +
+        String jpql = "select o from Order o " +
+                "join fetch o.delivery d " +
+                "where o.userSeq = :userSeq " +
                 "and o.orderSeq = :orderSeq";
 
         return Optional.ofNullable(em.createQuery(jpql, Order.class)
