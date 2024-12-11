@@ -5,10 +5,7 @@ import com.youngrich.oliveold.item.dto.SearchItemKeyword;
 import com.youngrich.oliveold.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -32,5 +29,13 @@ public class ItemController {
     }
 
     // 2. 상품 상세 조회
+    @GetMapping("/{itemSeq}")
+    public SearchItemInfo getSearchItemOneInfo(@PathVariable("itemSeq") Long itemSeq){
+        try{
+            return itemService.getSearchItemOneInfo(itemSeq);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
