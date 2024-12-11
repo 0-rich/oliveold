@@ -6,6 +6,7 @@ import com.youngrich.oliveold.item.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -22,7 +23,7 @@ public class ItemController {
 
     // 1. 상품 검색
     @GetMapping()
-    public List<SearchItemInfo> getSearchItemInfo(SearchItemKeyword searchItemKeyword){
+    public List<SearchItemInfo> getSearchItemInfo(@RequestBody SearchItemKeyword searchItemKeyword){
         try{
             return itemService.getSearchItemInfo(searchItemKeyword);
         }catch (NoSuchElementException e){
