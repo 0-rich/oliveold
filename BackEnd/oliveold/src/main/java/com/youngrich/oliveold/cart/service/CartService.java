@@ -61,4 +61,31 @@ public class CartService {
         cartItemRepository.delete(cartItem);
     }
 
+    // 3. 장바구니 상품 개수 변경
+    public void modifyItemCart(Authentication authentication, CartItemInfo cartItemInfo, int type) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 장바구니 조회
+        Cart cart = cartRepository.findByUser(user).orElseThrow(() -> new IllegalArgumentException("장바구니가 없습니다."));
+        // 장바구니 상품 조회
+        CartItem cartItem = cartItemRepository.findByItemSeqAndCart(cartItemInfo.getItemSeq(), cart).orElseThrow(() -> new IllegalArgumentException("장바구니에 해당 상품이 없습니다."));
+        // 상품 개수 변경
+        if(type == 0){
+            // 증가
+            cartItem.updateCount(cartItem.getCount() + cartItemInfo.getCount());
+        }else if( type == 1){
+            // 감소
+            int updateCount = cartItem.getCount() - cartItemInfo.getCount();
+            if(updateCount < 0){
+                throw  new IllegalArgumentException("상품 수량이 0 이하입니다.");
+            }
+            cartItem.updateCount(updateCount);
+        }else {
+            throw new IllegalArgumentException("(0: 증가, 1: 감소) 외 타입입니다.");
+        }
+        cartItemRepository.save(cartItem);
+    }
+
+    // 4. 장바구니 내역 조회
+
 }

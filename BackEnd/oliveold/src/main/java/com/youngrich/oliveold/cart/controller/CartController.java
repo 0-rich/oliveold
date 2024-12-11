@@ -20,10 +20,10 @@ public class CartController {
 
     // 1. 장바구니 상품 담기
     @PostMapping()
-    public ResponseEntity<?> setItemCart(Authentication authentication, CartItemInfo cartItemInfo){
+    public ResponseEntity<?> setItemCart(Authentication authentication, @RequestBody CartItemInfo cartItemInfo){
         try{
             cartService.setItemCart(authentication, cartItemInfo);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.ok("상바구니에 상품이 성공적으로 담겼습니다.");
         }catch (NoSuchElementException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -34,11 +34,24 @@ public class CartController {
     public ResponseEntity<?> deleteItemCart(Authentication authentication, @PathVariable("cartItemSeq") Long cartItemSeq){
         try{
             cartService.deleteItemCart(authentication, cartItemSeq);
-            return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.ok("장바구니 상품 삭제가 성공적으로 변경되었습니다.");
         }catch (NoSuchElementException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    // 3. 장바구니 상품 개수 변경
+    @PatchMapping("/{type}")
+    public ResponseEntity<?> modifyItemCart(Authentication authentication, @RequestBody CartItemInfo cartItemInfo, @PathVariable("type") int type){
+        try{
+            cartService.modifyItemCart(authentication, cartItemInfo, type);
+            return ResponseEntity.ok("장바구니 상품 수량이 성공적으로 변경되었습니다.");
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // 4. 장바구니 내역 조회
 
 
 }
