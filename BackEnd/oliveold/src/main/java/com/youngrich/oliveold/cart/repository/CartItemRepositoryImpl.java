@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
-public class CartRepositoryImpl implements CartRepositoryCustom{
+public class CartItemRepositoryImpl implements CartItemRepositoryCustom {
 
     private final EntityManager em;
 

@@ -38,7 +38,7 @@ public class CartService {
         Item item = itemRepository.findByItemSeq(cartItemInfo.getItemSeq()).orElseThrow(() -> new IllegalArgumentException("상품 정보가 없습니다."));
 
         // 장바구니에 동일 상품이 있는지 확인
-        CartItem cartItem = cartItemRepository.findByItemSeqAndCart(item.getItemSeq(), cart).orElse(null);
+        CartItem cartItem = cartItemRepository.findByCartItemSeqAndCart(item.getItemSeq(), cart).orElse(null);
         if(cartItem != null){
             // 이미 존재하는 경우
             cartItem.updateCount(cartItem.getCount() + cartItemInfo.getCount());
@@ -72,7 +72,7 @@ public class CartService {
         // 장바구니 조회
         Cart cart = cartRepository.findByUser(user).orElseThrow(() -> new IllegalArgumentException("장바구니가 없습니다."));
         // 장바구니 상품 조회
-        CartItem cartItem = cartItemRepository.findByItemSeqAndCart(cartItemInfo.getItemSeq(), cart).orElseThrow(() -> new IllegalArgumentException("장바구니에 해당 상품이 없습니다."));
+        CartItem cartItem = cartItemRepository.findByCartItemSeqAndCart(cartItemInfo.getItemSeq(), cart).orElseThrow(() -> new IllegalArgumentException("장바구니에 해당 상품이 없습니다."));
         // 상품 개수 변경
         if(type == 0){
             // 증가
