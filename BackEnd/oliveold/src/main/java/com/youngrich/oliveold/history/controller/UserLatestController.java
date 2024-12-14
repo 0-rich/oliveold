@@ -1,16 +1,16 @@
 package com.youngrich.oliveold.history.controller;
 
+import com.youngrich.oliveold.history.dto.LatestItemInfo;
+import com.youngrich.oliveold.history.dto.LikeItemInfo;
 import com.youngrich.oliveold.history.service.UserLatestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -32,5 +32,13 @@ public class UserLatestController {
     }
 
     // 2. 최근 본 상품 전체 조회
+    @GetMapping()
+    public List<LatestItemInfo> getAllLatest(Authentication authentication){
+        try{
+            return userLatestService.getAllLatest(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
