@@ -43,8 +43,10 @@ public class UserLikeService {
     public void deleteLike(Authentication authentication, Long itemSeq) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 상품 조회
+        Item item = itemRepository.findByItemSeq(itemSeq).orElseThrow(() -> new IllegalArgumentException("상품 정보가 없습니다."));
         // 좋아요 기록 조회
-        UserLike userLike = userLikeHistory.findByUserItemSeq(user, itemSeq).orElseThrow(() -> new IllegalArgumentException("해당 상품의 좋아요 기록이 없습니다."));
+        UserLike userLike = userLikeHistory.findByUserAndItem(user, item).orElseThrow(() -> new IllegalArgumentException("해당 상품의 좋아요 기록이 없습니다."));
         userLikeHistory.delete(userLike);
     }
 

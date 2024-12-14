@@ -1,7 +1,6 @@
 package com.youngrich.oliveold.history.controller;
 
 import com.youngrich.oliveold.history.dto.LatestItemInfo;
-import com.youngrich.oliveold.history.dto.LikeItemInfo;
 import com.youngrich.oliveold.history.service.UserLatestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
