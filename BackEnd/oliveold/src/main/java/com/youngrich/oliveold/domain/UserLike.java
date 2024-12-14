@@ -2,11 +2,13 @@ package com.youngrich.oliveold.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "user_like")
 @Getter
+@Builder
 public class UserLike {
 
     // 좋아요 한 상품 일련번호
