@@ -34,7 +34,15 @@ public class UserLikeService {
         userLikeHistory.save(userLike);
     }
 
+
     // 2. 좋아요 취소
+    public void deleteLike(Authentication authentication, Long itemSeq) {
+        // 회원 정보 조회
+        User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));
+        // 좋아요 기록 조회
+        UserLike userLike = userLikeHistory.findByUserItemSeq(user, itemSeq).orElseThrow(() -> new IllegalArgumentException("해당 상품의 좋아요 기록이 없습니다."));
+        userLikeHistory.delete(userLike);
+    }
 
     // 3. 좋아요 한 상품 전체 조회
 }
