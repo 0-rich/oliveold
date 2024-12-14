@@ -1,5 +1,6 @@
 package com.youngrich.oliveold.history.controller;
 
+import com.youngrich.oliveold.history.dto.LikeItemInfo;
 import com.youngrich.oliveold.history.service.UserLikeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -40,6 +42,13 @@ public class UserLikeContoller {
     }
 
     // 3. 좋아요 한 상품 전체 조회
-
+    @GetMapping()
+    public List<LikeItemInfo> getAllLike(Authentication authentication){
+        try{
+            return userLikeService.getAllLike(authentication);
+        }catch (NoSuchElementException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

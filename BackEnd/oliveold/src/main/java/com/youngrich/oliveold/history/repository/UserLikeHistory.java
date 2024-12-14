@@ -5,14 +5,15 @@ import com.youngrich.oliveold.domain.UserLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UserLikeHistory extends JpaRepository<UserLike, Long> {
 
-    // 회원 좋아요
-    Optional<UserLike> findByUserSeq(Long userSeq);
-
-    // 좋아요 상품 조회
+    // 특정 좋아요 상품 조회
     Optional<UserLike> findByUserItemSeq(User user, Long itemSeq);
+
+    // 모든 좋아요 상품 조회
+    List<UserLike> findByUser(User user);
 }
