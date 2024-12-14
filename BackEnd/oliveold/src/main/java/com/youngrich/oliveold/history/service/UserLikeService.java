@@ -49,6 +49,7 @@ public class UserLikeService {
     }
 
     // 3. 좋아요 한 상품 전체 조회
+    @Transactional(readOnly = true)
     public List<LikeItemInfo> getAllLike(Authentication authentication) {
         // 회원 정보 조회
         User user = userRepository.findById(Long.parseLong(authentication.getName())).orElseThrow(() -> new IllegalArgumentException("회원 정보가 없습니다."));

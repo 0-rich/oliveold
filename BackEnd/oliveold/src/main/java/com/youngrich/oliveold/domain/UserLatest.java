@@ -2,11 +2,13 @@ package com.youngrich.oliveold.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "user_latest")
 @Getter
+@Builder
 public class UserLatest {
 
     // 최근 본 상품 일련번호
